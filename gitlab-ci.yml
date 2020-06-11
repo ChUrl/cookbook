@@ -1,0 +1,29 @@
+image: gradle:jdk14
+
+stages:
+  - build
+  - test
+
+before_script:
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+
+cache:
+  paths:
+    - .gradle/wrapper
+    - .gradle/caches
+
+build:
+  stage: build
+  script:
+    - ./gradlew assemble
+  only:
+    - master
+    - dev
+
+test:
+  stage: test
+  script:
+    - ./gradlew check
+  only:
+    - master
+    - dev
