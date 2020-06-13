@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/style/tailwind.css">
+
+    <title th:text="'Kochbuch' + (${title} ? ' - ' + ${title} : '')">Kochbuch</title>
+</head>
+
+<body class="bg-gray-200">
+<header>
+    <nav th:fragment="nav" class="fixed w-full top-0 flex items-center justify-between flex-wrap bg-white p-6 shadow-lg">
+        <div class="flex items-center flex-shrink-0 text-teal-700 mr-6">
+            <img class="fill-current h-8 w-8 mr-2" width="54" height="54" th:src="@{image/cookbook.svg}">
+            <span class="font-semibold text-xl tracking-tight">Kochbuch</span>
+        </div>
+        <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+            <div class="text-sm lg:flex-grow">
+                <a href="/"
+                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-700 hover:text-teal-400 mr-4 transition-colors duration-200">
+                    Rezepte
+                </a>
+                <a href="/new"
+                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-700 hover:text-teal-400 mr-4 transition-colors duration-200">
+                    Hinzufügen
+                </a>
+                <a href="/timeline"
+                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-700 hover:text-teal-400 mr-4 transition-colors duration-200">
+                    Kalender
+                </a>
+                <a href="/ingredients"
+                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-700 hover:text-teal-400 mr-4 transition-colors duration-200">
+                    Zutaten
+                </a>
+                <a href="/search"
+                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-700 hover:text-teal-400 mr-4 transition-colors duration-200">
+                    Suchen
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main th:insert="${bodycontent}" class="mt-24 mb-4 mx-auto w-3/4">
+
+</main>
+
+<footer>
+
+</footer>
+</body>
+
+<!--
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/skeleton :: html(
+      title='',
+      bodycontent=~{:: bodycontent})">
+
+<th:block th:fragment="bodycontent">
+
+</th:block>
+
+</html>
+-->

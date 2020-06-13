@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<html lang="de" xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/skeleton :: html(
+      title='Rezepte',
+      bodycontent=~{:: bodycontent})">
 
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/style/tailwind.css">
-    <title>CookBook</title>
-</head>
+<th:block th:fragment="bodycontent">
+    <h1 class="font-light text-2xl">Alle Rezepte</h1>
+    <div th:each="recipe : ${recipes}" class="rounded-lg bg-white shadow-sm mt-4 p-4 hover:shadow-md transition-shadow duration-200 cursor-pointer">
+        <h3 th:text="${recipe.getTitle()}"></h3>
+    </div>
+</th:block>
 
-<body class="bg-gray-100">
-
-<h1 class="text-4xl text-center">Hallo tolles Kochbuch</h1>
-
-</body>
 </html>
