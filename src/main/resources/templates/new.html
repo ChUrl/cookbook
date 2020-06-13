@@ -5,7 +5,14 @@
       bodycontent=~{:: bodycontent})">
 
 <th:block th:fragment="bodycontent">
-
+    <div class="rounded-lg shadow-sm w-full h-full">
+        <form th:action="@{/new/submit}" method="post">
+            <input type="text" name="recipe_title" placeholder="Name">
+            <input type="text" name="recipe_desc" placeholder="Kurzbeschreibung">
+            <textarea type="text" name="recipe_body" placeholder="Rezept"></textarea>
+            <input type="submit">
+        </form>
+    </div>
 </th:block>
 
 </html>

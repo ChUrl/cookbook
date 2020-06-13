@@ -1,35 +1,38 @@
 package de.churl.cookbook.infrastructure.controller;
 
-import de.churl.cookbook.domain.model.Recipe;
+import de.churl.cookbook.domain.service.PersistanceService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-
+@RequiredArgsConstructor
 @Controller
 public class CookBookController {
 
+    private final PersistanceService persistanceService;
+
     @GetMapping("*")
     public String index(Model model) {
-        model.addAttribute("recipes",
-                           List.of(new Recipe("Brei", "", ""),
-                                   new Recipe("Soße", "", ""),
-                                   new Recipe("Kartoffel", "", ""),
-                                   new Recipe("Cola", "", ""),
-                                   new Recipe("Sauerkraut", "", ""),
-                                   new Recipe("Reis", "", ""),
-                                   new Recipe("Wasser", "", ""),
-                                   new Recipe("Braten", "", ""),
-                                   new Recipe("Gnocci", "", ""),
-                                   new Recipe("Brokkoli", "", ""),
-                                   new Recipe("Vodka", "", "")));
+        model.addAttribute("recipes", persistanceService.findAllRecipes());
         return "index";
     }
 
     @GetMapping("/new")
     public String newRecipe() {
         return "new";
+    }
+
+    @PostMapping("/new/submit")
+    public String newRecipeSubmit(@RequestParam("recipe_title") String title,
+                                  @RequestParam("recipe_desc") String description,
+                                  @RequestParam("recipe_body") String body) {
+
+        persistanceService.saveNewRecipe(title, description, body);
+
+        return "redirect:/";
     }
 
     @GetMapping("/timeline")
