@@ -18,6 +18,7 @@ build:
     - ./gradlew assemble
   only:
     - master
+    - dev
 
 test:
   stage: test
@@ -25,4 +26,3 @@ test:
     - ./gradlew check
   only:
     - master
-    - dev
