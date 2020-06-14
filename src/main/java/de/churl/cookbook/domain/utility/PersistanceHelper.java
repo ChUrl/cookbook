@@ -22,7 +22,7 @@ public class PersistanceHelper {
     }
 
     public Recipe dtoToRecipe(RecipeDTO dto) {
-        return new Recipe(dto.getTitle(), dto.getDescription(), dto.getBody());
+        return new Recipe(dto.getId(), dto.getTitle(), dto.getDescription(), dto.getBody());
     }
 
     public List<Recipe> dtosToRecipes(Collection<RecipeDTO> dtos) {
