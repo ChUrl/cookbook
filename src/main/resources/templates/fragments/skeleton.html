@@ -4,17 +4,21 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="/style/tailwind.css">
+    <link rel="icon" href="/image/cookbook.svg">
+
 
     <title th:text="'Kochbuch' + (${title} ? ' - ' + ${title} : '')">Kochbuch</title>
 </head>
 
 <body class="bg-gray-200">
 <header>
-    <nav th:fragment="nav" class="fixed w-full top-0 flex items-center justify-between flex-wrap bg-white p-6 shadow-lg">
+    <nav th:fragment="nav" class="fixed w-full top-0 flex items-center justify-between flex-wrap bg-white p-6 shadow-lg z-10">
         <div class="flex items-center flex-shrink-0 text-teal-700 mr-6">
             <img class="fill-current h-8 w-8 mr-2" width="54" height="54" th:src="@{image/cookbook.svg}">
-            <span class="font-semibold text-xl tracking-tight">Kochbuch</span>
+            <span class="font-semibold text-xl tracking-tight select-none">Kochbuch</span>
         </div>
         <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
             <div class="text-sm lg:flex-grow">
@@ -47,7 +51,7 @@
 
 </main>
 
-<footer>
+<footer class="z-10">
     <!-- TODO: Accountinfo -->
 </footer>
 </body>
@@ -67,4 +71,17 @@ Standard Filestruktur:
 </th:block>
 
 </html>
+-->
+
+<!--
+Standard Style:
+
+Überschrift: teal-700
+Link hover: teal-400
+
+Schatten: shadow-md
+
+Polster: py-2 px-4
+Abstand: mb-6 für Überschrift
+         mb-4 für Karten
 -->
