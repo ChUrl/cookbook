@@ -619,6 +619,40 @@ video {
     }
 }
 
+.btn-teal {
+    --bg-opacity: 1;
+    background-color: #2c7a7b;
+    background-color: rgba(44, 122, 123, var(--bg-opacity));
+    --text-opacity: 1;
+    color: #fff;
+    color: rgba(255, 255, 255, var(--text-opacity));
+    border-radius: 0.25rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+.asciidoc h1 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    --text-opacity: 1;
+    color: #2d3748;
+    color: rgba(45, 55, 72, var(--text-opacity));
+    line-height: 1.25;
+}
+
+.asciidoc ul {
+    list-style-type: disc;
+    list-style-position: inside;
+}
+
+.asciidoc ul p {
+    display: inline;
+}
+
 .space-y-0 > :not(template) ~ :not(template) {
     --space-y-reverse: 0;
     margin-top: calc(0px * calc(1 - var(--space-y-reverse)));
