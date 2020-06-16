@@ -6,7 +6,7 @@
 
 <th:block th:fragment="bodycontent">
     <h1 class="font-light text-2xl select-none mb-6">Neues Rezept</h1>
-    <div class="bg-white rounded shadow-md w-full h-full p-4">
+    <div class="bg-white rounded shadow-md w-full h-full p-4 mb-6">
         <form th:action="@{/new/submit}" method="post">
             <div class="mb-4">
                 <label for="recipe_title" class="block text-gray-700 text-sm font-bold mb-2">
@@ -35,6 +35,40 @@
             <input type="submit" class="btn-teal">
         </form>
     </div>
+
+    <!-- Legende -->
+    <div class="bg-white rounded shadow-md w-full h-full p-4 flex font-mono">
+        <div class="flex-grow w-full">
+            <h3 class="text-xl font-bold mb-4">Formatierungshilfe:</h3>
+            <ul class="list-disc list-inside mb-4">
+                <li><a class="cursor-pointer">Große Überschrift</a></li>
+                <li><a class="cursor-pointer">Kleine Überschrift</a></li>
+            </ul>
+            <ul class="list-disc list-inside mb-4">
+                <li><a class="cursor-pointer">Ungeordnete Liste</a></li>
+                <li><a class="cursor-pointer">Geordnete Liste</a></li>
+                <li><a class="cursor-pointer">Checkliste</a></li>
+            </ul>
+            <ul class="list-disc list-inside mb-4">
+                <li><a class="cursor-pointer">Tabelle</a></li>
+            </ul>
+        </div>
+        <div class="flex-grow w-full">
+            <h3 class="text-xl font-hairline mb-4">(Text markieren und klicken.)</h3>
+            <ul class="list-disc list-inside">
+                <li><a class="cursor-pointer">Link</a></li>
+                <li><a class="cursor-pointer">Fett</a></li>
+                <li><a class="cursor-pointer">Kursiv</a></li>
+                <li><a class="cursor-pointer">Monospace</a></li>
+                <li><a class="cursor-pointer">Markiert</a></li>
+                <li><a class="cursor-pointer">Unterstrichen</a></li>
+                <li><a class="cursor-pointer">Durchgestrichen</a></li>
+                <li><a class="cursor-pointer">Hochgestellt</a></li>
+                <li><a class="cursor-pointer">Heruntergestellt</a></li>
+            </ul>
+        </div>
+    </div>
+
     <!--suppress JSUnresolvedVariable -->
     <script>
         // TextArea automatisch vergrößern
@@ -48,6 +82,8 @@
             this.style.height = 'auto';
             this.style.height = (this.scrollHeight) + 'px';
         }
+
+        // Legendeneintrag einsetzen
     </script>
 </th:block>
 
