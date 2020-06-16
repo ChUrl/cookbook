@@ -50,6 +50,7 @@ public class CookBookController {
         Asciidoctor doc = Asciidoctor.Factory.create();
 
         String html = doc.convert(recipe.getBody(), new HashMap<>());
+        log.info("String:\n{}\nHTML:\n{}", recipe.getBody(), html);
 
         doc.close();
 
