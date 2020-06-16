@@ -15,7 +15,9 @@
         </div>
         <hr class="border-t-1 border-solid border-teal-900 my-2">
         -->
-        <p th:text="${recipe.getBody()}" class="text-md select-none"></p>
+        <div class="asciidoc">
+            <th:block th:utext="${bodyhtml}"></th:block>
+        </div>
     </div>
 </th:block>
 
