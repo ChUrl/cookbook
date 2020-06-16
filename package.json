@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "postcss src/main/resources/static/style/tailwind_pre.css -o src/main/resources/static/style/tailwind.css"
+    "dev": "postcss src/main/resources/static/style/tailwind_pre.css -o src/main/resources/static/style/tailwind_dev.css",
+    "prod": "postcss src/main/resources/static/style/tailwind_pre.css -o src/main/resources/static/style/tailwind_prod.css"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,8 @@
     "postcss-cli": "^7.1.1",
     "postcss-nested": "^4.2.1",
     "tailwindcss": "^1.4.6"
+  },
+  "devDependencies": {
+    "cssnano": "^4.1.10"
   }
 }
