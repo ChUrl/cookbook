@@ -38,33 +38,50 @@
 
     <!-- Legende -->
     <div class="bg-white rounded shadow-md w-full h-full p-4 flex font-mono">
+        <h3 class="text-xl font-bold mb-4 flex-grow mr-6">Formatierung:</h3>
         <div class="flex-grow w-full">
-            <h3 class="text-xl font-bold mb-4">Formatierungshilfe:</h3>
             <ul class="list-disc list-inside mb-4">
-                <li><a class="cursor-pointer">Große Überschrift</a></li>
-                <li><a class="cursor-pointer">Kleine Überschrift</a></li>
+                <li>
+                    <a class="cursor-pointer" onclick="insertAtCursor('== ', 0)">Große
+                                                                                 Überschrift</a>
+                </li>
+                <li><a class="cursor-pointer" onclick="insertAtCursor('=== ', 0)">Kleine
+                                                                                  Überschrift</a>
+                </li>
             </ul>
             <ul class="list-disc list-inside mb-4">
-                <li><a class="cursor-pointer">Ungeordnete Liste</a></li>
-                <li><a class="cursor-pointer">Geordnete Liste</a></li>
-                <li><a class="cursor-pointer">Checkliste</a></li>
-            </ul>
-            <ul class="list-disc list-inside mb-4">
-                <li><a class="cursor-pointer">Tabelle</a></li>
+                <li><a class="cursor-pointer" onclick="insertAtCursor('* ', 0)">Ungeordnete
+                                                                                Liste</a>
+                </li>
+                <li><a class="cursor-pointer" onclick="insertAtCursor('. ', 0)">Geordnete Liste</a>
+                </li>
+                <li><a class="cursor-pointer" onclick="insertAtCursor('* [*] ', 0)">Angekreuzt</a>
+                </li>
+                <li><a class="cursor-pointer" onclick="insertAtCursor('* [ ] ', 0)">Nicht
+                                                                                    Angekreuzt</a>
+                </li>
             </ul>
         </div>
         <div class="flex-grow w-full">
-            <h3 class="text-xl font-hairline mb-4">(Text markieren und klicken.)</h3>
             <ul class="list-disc list-inside">
-                <li><a class="cursor-pointer">Link</a></li>
-                <li><a class="cursor-pointer">Fett</a></li>
-                <li><a class="cursor-pointer">Kursiv</a></li>
-                <li><a class="cursor-pointer">Monospace</a></li>
-                <li><a class="cursor-pointer">Markiert</a></li>
-                <li><a class="cursor-pointer">Unterstrichen</a></li>
-                <li><a class="cursor-pointer">Durchgestrichen</a></li>
-                <li><a class="cursor-pointer">Hochgestellt</a></li>
-                <li><a class="cursor-pointer">Heruntergestellt</a></li>
+                <li><a class="cursor-pointer font-bold" onclick="insertAtCursor('**', -1)">Fett</a>
+                </li>
+                <li><a class="cursor-pointer italic" onclick="insertAtCursor('__', -1)">Kursiv</a>
+                </li>
+                <li><a class="cursor-pointer" onclick="insertAtCursor('``', -1)">Monospace</a></li>
+                <li><a class="cursor-pointer bg-yellow-500" onclick="insertAtCursor('##', -1)">Markiert</a>
+                </li>
+                <li>
+                    <a class="cursor-pointer underline" onclick="insertAtCursor('[.underline]##', -1)">Unterstrichen</a>
+                </li>
+                <li>
+                    <a class="cursor-pointer line-through" onclick="insertAtCursor('[.line-through]##', -1)">Durchgestrichen</a>
+                </li>
+                <li><a class="cursor-pointer" onclick="insertAtCursor('^^', -1)">Hochgestellt</a>
+                </li>
+                <li>
+                    <a class="cursor-pointer" onclick="insertAtCursor('~~', -1)">Heruntergestellt</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -75,15 +92,32 @@
         const tx = document.getElementsByClassName('resize-auto');
         for (let i = 0; i < tx.length; i++) {
             tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;');
-            tx[i].addEventListener("input", OnInput, false);
+            tx[i].addEventListener("input", onInput, false);
         }
 
-        function OnInput() {
+        function onInput() {
             this.style.height = 'auto';
             this.style.height = (this.scrollHeight) + 'px';
         }
 
-        // Legendeneintrag einsetzen
+        // Legendeneintrag einsetzen an Cursorstelle
+        function insertAtCursor(value, offset) {
+            const textarea = document.getElementById('recipe_body')
+
+            if (textarea.selectionStart || textarea.selectionStart === '0') {
+                const startPos = textarea.selectionStart;
+                const endPos = textarea.selectionEnd;
+                textarea.value = textarea.value.substring(0, startPos)
+                    + value
+                    + textarea.value.substring(endPos, textarea.value.length);
+
+                textarea.focus()
+                textarea.selectionEnd = textarea.selectionEnd + offset
+            } else {
+                textarea.value += value;
+                textarea.focus()
+            }
+        }
     </script>
 </th:block>
 

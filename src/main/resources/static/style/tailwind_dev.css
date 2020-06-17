@@ -640,6 +640,9 @@ video {
 }
 
 .asciidoc h2 {
+    --text-opacity: 1;
+    color: #2c7a7b;
+    color: rgba(44, 122, 123, var(--text-opacity));
     font-size: 1.5rem;
     font-weight: 700;
     line-height: 1.25;
@@ -647,6 +650,9 @@ video {
 }
 
 .asciidoc h3 {
+    --text-opacity: 1;
+    color: #2c7a7b;
+    color: rgba(44, 122, 123, var(--text-opacity));
     font-size: 1.25rem;
     font-weight: 700;
     line-height: 1.25;
