@@ -6,7 +6,7 @@
 
 <th:block th:fragment="bodycontent">
     <h1 class="font-light text-2xl select-none mb-6">Neues Rezept</h1>
-    <div class="bg-white rounded shadow-md w-full h-full p-4">
+    <div class="bg-white rounded shadow-md w-full h-full p-4 mb-6">
         <form th:action="@{/new/submit}" method="post">
             <div class="mb-4">
                 <label for="recipe_title" class="block text-gray-700 text-sm font-bold mb-2">
@@ -32,21 +32,91 @@
                           required minlength="3" maxlength="8192"
                           class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight resize-none resize-auto"></textarea>
             </div>
-            <input type="submit" class="bg-teal-700 text-white rounded shadow-md px-3 py-2 cursor-pointer">
+            <input type="submit" class="btn-teal">
         </form>
     </div>
+
+    <!-- Legende -->
+    <div class="bg-white rounded shadow-md w-full h-full p-4 flex font-mono">
+        <h3 class="text-xl font-bold mb-4 flex-grow mr-6">Formatierung:</h3>
+        <div class="flex-grow w-full">
+            <ul class="list-disc list-inside mb-4">
+                <li>
+                    <a class="cursor-pointer" onclick="insertAtCursor('== ', 0)">Große
+                                                                                 Überschrift</a>
+                </li>
+                <li><a class="cursor-pointer" onclick="insertAtCursor('=== ', 0)">Kleine
+                                                                                  Überschrift</a>
+                </li>
+            </ul>
+            <ul class="list-disc list-inside mb-4">
+                <li><a class="cursor-pointer" onclick="insertAtCursor('* ', 0)">Ungeordnete
+                                                                                Liste</a>
+                </li>
+                <li><a class="cursor-pointer" onclick="insertAtCursor('. ', 0)">Geordnete Liste</a>
+                </li>
+                <li><a class="cursor-pointer" onclick="insertAtCursor('* [*] ', 0)">Angekreuzt</a>
+                </li>
+                <li><a class="cursor-pointer" onclick="insertAtCursor('* [ ] ', 0)">Nicht
+                                                                                    Angekreuzt</a>
+                </li>
+            </ul>
+        </div>
+        <div class="flex-grow w-full">
+            <ul class="list-disc list-inside">
+                <li><a class="cursor-pointer font-bold" onclick="insertAtCursor('**', -1)">Fett</a>
+                </li>
+                <li><a class="cursor-pointer italic" onclick="insertAtCursor('__', -1)">Kursiv</a>
+                </li>
+                <li><a class="cursor-pointer" onclick="insertAtCursor('``', -1)">Monospace</a></li>
+                <li><a class="cursor-pointer bg-yellow-500" onclick="insertAtCursor('##', -1)">Markiert</a>
+                </li>
+                <li>
+                    <a class="cursor-pointer underline" onclick="insertAtCursor('[.underline]##', -1)">Unterstrichen</a>
+                </li>
+                <li>
+                    <a class="cursor-pointer line-through" onclick="insertAtCursor('[.line-through]##', -1)">Durchgestrichen</a>
+                </li>
+                <li><a class="cursor-pointer" onclick="insertAtCursor('^^', -1)">Hochgestellt</a>
+                </li>
+                <li>
+                    <a class="cursor-pointer" onclick="insertAtCursor('~~', -1)">Heruntergestellt</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
     <!--suppress JSUnresolvedVariable -->
     <script>
         // TextArea automatisch vergrößern
         const tx = document.getElementsByClassName('resize-auto');
         for (let i = 0; i < tx.length; i++) {
             tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;');
-            tx[i].addEventListener("input", OnInput, false);
+            tx[i].addEventListener("input", onInput, false);
         }
 
-        function OnInput() {
+        function onInput() {
             this.style.height = 'auto';
             this.style.height = (this.scrollHeight) + 'px';
+        }
+
+        // Legendeneintrag einsetzen an Cursorstelle
+        function insertAtCursor(value, offset) {
+            const textarea = document.getElementById('recipe_body')
+
+            if (textarea.selectionStart || textarea.selectionStart === '0') {
+                const startPos = textarea.selectionStart;
+                const endPos = textarea.selectionEnd;
+                textarea.value = textarea.value.substring(0, startPos)
+                    + value
+                    + textarea.value.substring(endPos, textarea.value.length);
+
+                textarea.focus()
+                textarea.selectionEnd = textarea.selectionEnd + offset
+            } else {
+                textarea.value += value;
+                textarea.focus()
+            }
         }
     </script>
 </th:block>

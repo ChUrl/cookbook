@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/skeleton :: html(
+      title='Fehler',
+      bodycontent=~{:: bodycontent})">
+
+<th:block th:fragment="bodycontent">
+    <h1>Ein Fehler ist aufgetreten</h1>
+</th:block>
+
+</html>
