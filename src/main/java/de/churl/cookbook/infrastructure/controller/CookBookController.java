@@ -1,7 +1,10 @@
 package de.churl.cookbook.infrastructure.controller;
 
+import de.churl.cookbook.domain.model.Recipe;
 import de.churl.cookbook.domain.service.PersistanceService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.asciidoctor.Asciidoctor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.HashMap;
+
+@Log4j2
 @RequiredArgsConstructor
 @Controller
 public class CookBookController {
@@ -40,7 +46,15 @@ public class CookBookController {
     public String details(@PathVariable("id") String id,
                           Model model) {
 
-        model.addAttribute("recipe", persistanceService.findRecipeById(id));
+        Recipe recipe = persistanceService.findRecipeById(id);
+        Asciidoctor doc = Asciidoctor.Factory.create();
+
+        String html = doc.convert(recipe.getBody(), new HashMap<>());
+
+        doc.close();
+
+        model.addAttribute("recipe", recipe);
+        model.addAttribute("bodyhtml", html);
 
         return "details";
     }

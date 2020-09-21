@@ -6,14 +6,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" th:href="@{/style/tailwind.css}">
+    <link rel="stylesheet" th:href="@{/style/tailwind_dev.css}">
     <link rel="icon" th:href="@{/image/cookbook.svg}">
-
 
     <title th:text="'Kochbuch' + (${title} ? ' - ' + ${title} : '')">Kochbuch</title>
 </head>
 
-<body class="bg-gray-200">
+<body class="bg-gray-200 text-gray-800">
 <header>
     <nav th:fragment="nav" class="fixed w-full top-0 flex items-center justify-between flex-wrap bg-white p-6 shadow-lg z-10">
         <div class="flex items-center flex-shrink-0 text-teal-700 mr-6">
