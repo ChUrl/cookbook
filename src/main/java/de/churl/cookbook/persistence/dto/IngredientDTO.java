@@ -1,4 +1,4 @@
-package de.churl.cookbook.persistance.dto;
+package de.churl.cookbook.persistence.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,5 +14,5 @@ public class IngredientDTO {
     Long id;
 
     String title;
-    int type;
+    String type;
 }

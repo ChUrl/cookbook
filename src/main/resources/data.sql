@@ -1,3 +1,5 @@
+-- noinspection SqlNoDataSourceInspectionForFile
+
 INSERT INTO recipe(title, description, body)
 VALUES ('Gefülltes Fladenbrot', 'Gefülltes Fladenbrot mit Schafskäse, Gurken und Krautsalat',
         '= Document Title
@@ -65,3 +67,7 @@ einfach mehr Text einfach mehr Text einfach mehr Text einfach mehr Text einfach 
 
 * Tomatensauße
 * Salami');
+
+INSERT INTO ingredient(title, type)
+VALUES ('Karotten', 'VEGETABLE'),
+       ('Salami', 'MEAT');

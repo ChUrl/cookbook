@@ -1,4 +1,4 @@
-package de.churl.cookbook.persistance.dto;
+package de.churl.cookbook.persistence.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

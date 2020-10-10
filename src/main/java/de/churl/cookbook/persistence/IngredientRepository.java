@@ -1,6 +1,6 @@
-package de.churl.cookbook.persistance;
+package de.churl.cookbook.persistence;
 
-import de.churl.cookbook.persistance.dto.IngredientDTO;
+import de.churl.cookbook.persistence.dto.IngredientDTO;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
