@@ -34,12 +34,21 @@ public class CookBookController {
         return "new";
     }
 
+    // TODO: Im Form müssen die Zutaten ausgewählt werden
+    // Ohne Liste: Extra Seite zum Hinzufügen von Zutaten,
+    // alle Zutaten werden angezeigt mit Suchleiste, können angeklickt
+    // werden um einzeln hinzugefügt zu werden. Dann kann die Seite
+    // jedes mal neu geladen werden und man kann die Zutaten einzeln
+    // übermitteln. Das Löschen kann man oben auf derselben Seite machen,
+    // wo die Zutaten angezeigt werden könnten, welche bereits zum Rezept
+    // gehören. (Siehe untere mappings)
     @PostMapping("/new/submit")
     public String newRecipeSubmit(@RequestParam("recipe_title") String title,
                                   @RequestParam("recipe_desc") String description,
                                   @RequestParam("recipe_body") String body) {
 
         persistenceService.saveNewRecipe(title, description, body);
+        // TODO: Hier muss die ID geholt werden und auf die Zutatenseite verlinkt werden.
 
         return "redirect:/";
     }
@@ -49,7 +58,7 @@ public class CookBookController {
                           Model model) {
 
         Recipe recipe = persistenceService.findRecipeById(id);
-        Asciidoctor doc = Asciidoctor.Factory.create();
+        Asciidoctor doc = Asciidoctor.Factory.create(); // TODO: move into helper
 
         String html = doc.convert(recipe.getBody(), new HashMap<>());
 
@@ -60,6 +69,15 @@ public class CookBookController {
 
         return "details";
     }
+
+    // TODO: Rezeptkörper, titel, beschreibung bearbeiten
+    // @GetMapping("/details/{id}/edit")
+    // @PostMapping("/details/{id}/update")
+
+    // TODO: Zutaten hinzufügen, entfernen
+    // @GetMapping("/details/{id}/ingredients")
+    // @PostMapping("/details/{id}/ingredients/add/{ingredient}")
+    // @PostMapping("/details/{id}/ingredients/remove/{ingredient}")
 
     @GetMapping("/timeline")
     public String timeline() {
@@ -87,6 +105,8 @@ public class CookBookController {
 
         return "redirect:/ingredients";
     }
+
+    // TODO: @PostMapping("/ingredients/remove")
 
     @GetMapping("/search")
     public String search() {

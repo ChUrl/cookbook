@@ -7,7 +7,6 @@ import de.churl.cookbook.persistence.dto.IngredientDTO;
 import de.churl.cookbook.persistence.dto.RecipeDTO;
 import lombok.experimental.UtilityClass;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,7 +16,10 @@ public class PersistenceHelper {
     // Recipes
 
     public RecipeDTO recipeToDTO(Recipe recipe) {
-        return new RecipeDTO(null, recipe.getTitle(), recipe.getDescription(), recipe.getBody());
+        return new RecipeDTO(null, recipe.getTitle(), recipe.getDescription(), recipe.getBody(),
+                             recipe.getIngredients().stream()
+                                   .map(PersistenceHelper::ingredientToDTO)
+                                   .collect(Collectors.toUnmodifiableList()));
     }
 
     public List<RecipeDTO> recipesToDTOs(List<Recipe> recipes) {
@@ -27,17 +29,19 @@ public class PersistenceHelper {
     }
 
     public Recipe dtoToRecipe(RecipeDTO dto) {
-        return new Recipe(dto.getId(), dto.getTitle(), dto.getDescription(), dto.getBody());
+        return new Recipe(dto.getId(), dto.getTitle(), dto.getDescription(), dto.getBody(),
+                          dto.getIngredients().stream()
+                             .map(PersistenceHelper::dtoToIngredient)
+                             .collect(Collectors.toUnmodifiableList()));
     }
 
-    public List<Recipe> dtosToRecipes(Collection<RecipeDTO> dtos) {
+    public List<Recipe> dtosToRecipes(List<RecipeDTO> dtos) {
         return dtos.stream()
                    .map(PersistenceHelper::dtoToRecipe)
                    .collect(Collectors.toUnmodifiableList());
     }
 
     // Ingredients
-
 
     public IngredientDTO ingredientToDTO(Ingredient ingredient) {
         return new IngredientDTO(null, ingredient.getTitle(), ingredient.getType().toString());
@@ -53,7 +57,7 @@ public class PersistenceHelper {
         return new Ingredient(dto.getId(), dto.getTitle(), IngredientType.valueOf(dto.getType()));
     }
 
-    public List<Ingredient> dtosToIngredients(Collection<IngredientDTO> dtos) {
+    public List<Ingredient> dtosToIngredients(List<IngredientDTO> dtos) {
         return dtos.stream()
                    .map(PersistenceHelper::dtoToIngredient)
                    .collect(Collectors.toUnmodifiableList());

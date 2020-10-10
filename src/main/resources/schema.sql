@@ -10,6 +10,15 @@ CREATE TABLE recipe
     body        VARCHAR(8192) NOT NULL
 );
 
+DROP TABLE IF EXISTS recipe_position;
+
+CREATE TABLE recipe_position
+(
+    id            INT PRIMARY KEY,
+    recipe_id     INT REFERENCES recipe (id),
+    ingredient_id INT REFERENCES ingredient (id)
+);
+
 DROP TABLE IF EXISTS ingredient;
 
 CREATE TABLE ingredient
