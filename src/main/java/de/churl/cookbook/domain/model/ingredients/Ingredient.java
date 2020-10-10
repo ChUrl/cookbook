@@ -5,6 +5,8 @@ import lombok.Value;
 @Value
 public class Ingredient {
 
+    Long id;
+
     String title;
     IngredientType type;
 }

@@ -1,7 +1,8 @@
 package de.churl.cookbook.infrastructure.controller;
 
 import de.churl.cookbook.domain.model.Recipe;
-import de.churl.cookbook.domain.service.PersistanceService;
+import de.churl.cookbook.domain.model.ingredients.IngredientType;
+import de.churl.cookbook.domain.service.PersistenceService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.asciidoctor.Asciidoctor;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 @Log4j2
@@ -19,11 +21,11 @@ import java.util.HashMap;
 @Controller
 public class CookBookController {
 
-    private final PersistanceService persistanceService;
+    private final PersistenceService persistenceService;
 
     @GetMapping("*")
     public String index(Model model) {
-        model.addAttribute("recipes", persistanceService.findAllRecipes());
+        model.addAttribute("recipes", persistenceService.findAllRecipes());
         return "index";
     }
 
@@ -37,7 +39,7 @@ public class CookBookController {
                                   @RequestParam("recipe_desc") String description,
                                   @RequestParam("recipe_body") String body) {
 
-        persistanceService.saveNewRecipe(title, description, body);
+        persistenceService.saveNewRecipe(title, description, body);
 
         return "redirect:/";
     }
@@ -46,7 +48,7 @@ public class CookBookController {
     public String details(@PathVariable("id") String id,
                           Model model) {
 
-        Recipe recipe = persistanceService.findRecipeById(id);
+        Recipe recipe = persistenceService.findRecipeById(id);
         Asciidoctor doc = Asciidoctor.Factory.create();
 
         String html = doc.convert(recipe.getBody(), new HashMap<>());
@@ -65,8 +67,25 @@ public class CookBookController {
     }
 
     @GetMapping("/ingredients")
-    public String ingredients() {
+    public String ingredients(Model model) {
+        model.addAttribute("ingredients", persistenceService.findAllIngredients());
+
         return "ingredients";
+    }
+
+    @GetMapping("/ingredients/new")
+    public String newIngredient(Model model) {
+        model.addAttribute("types", Arrays.asList(IngredientType.values()));
+
+        return "ingredients_new";
+    }
+
+    @PostMapping("/ingredients/new/submit")
+    public String newIngredientSubmit(@RequestParam("ingredient_title") String title,
+                                      @RequestParam("ingredient_type") String type) {
+        persistenceService.saveNewIngredient(title, type);
+
+        return "redirect:/ingredients";
     }
 
     @GetMapping("/search")
