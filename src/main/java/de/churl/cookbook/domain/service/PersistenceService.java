@@ -4,11 +4,9 @@ import de.churl.cookbook.domain.model.Recipe;
 import de.churl.cookbook.domain.model.ingredients.Ingredient;
 import de.churl.cookbook.domain.utility.PersistenceHelper;
 import de.churl.cookbook.persistence.IngredientRepository;
-import de.churl.cookbook.persistence.RecipePositionRepository;
 import de.churl.cookbook.persistence.RecipeRepository;
 import de.churl.cookbook.persistence.dto.IngredientDTO;
 import de.churl.cookbook.persistence.dto.RecipeDTO;
-import de.churl.cookbook.persistence.dto.RecipePositionDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,11 +19,15 @@ public class PersistenceService {
 
     private final RecipeRepository recipeRepository;
     private final IngredientRepository ingredientRepository;
-    private final RecipePositionRepository recipePositionRepository;
 
     // ###################################### LOAD
 
+    // TODO: Einen cache einführen, wo Zutaten und Rezepte drinliegen.
+    // Dieser wird beim Starten der Anwendung aus den Datenbanken befüllt,
+    // während die Anwendung läuft, wird gleichzeitig in den Cache und die Datenbank geschrieben.
     public List<Recipe> findAllRecipes() {
+        // TODO: Many to Many wird noch nicht aufgelöst, für jedes Rezept müssen noch die
+        // TODO: IngredientRefs zu Ingredients aufgelöst werden.
         return PersistenceHelper.dtosToRecipes(recipeRepository.findAll());
     }
 
@@ -52,7 +54,7 @@ public class PersistenceService {
     }
 
     public void addIngredientToRecipe(String recipeId, String ingredientId) {
-        recipePositionRepository.save(new RecipePositionDTO(null, Long.valueOf(recipeId), Long.valueOf(ingredientId)));
+
     }
 
     // ####################################### DELETE

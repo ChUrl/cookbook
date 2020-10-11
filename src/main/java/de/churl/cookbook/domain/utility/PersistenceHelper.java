@@ -4,9 +4,11 @@ import de.churl.cookbook.domain.model.Recipe;
 import de.churl.cookbook.domain.model.ingredients.Ingredient;
 import de.churl.cookbook.domain.model.ingredients.IngredientType;
 import de.churl.cookbook.persistence.dto.IngredientDTO;
+import de.churl.cookbook.persistence.dto.IngredientRef;
 import de.churl.cookbook.persistence.dto.RecipeDTO;
 import lombok.experimental.UtilityClass;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,8 +20,8 @@ public class PersistenceHelper {
     public RecipeDTO recipeToDTO(Recipe recipe) {
         return new RecipeDTO(null, recipe.getTitle(), recipe.getDescription(), recipe.getBody(),
                              recipe.getIngredients().stream()
-                                   .map(PersistenceHelper::ingredientToDTO)
-                                   .collect(Collectors.toUnmodifiableList()));
+                                   .map(ingredient -> new IngredientRef(ingredient.getId()))
+                                   .collect(Collectors.toSet()));
     }
 
     public List<RecipeDTO> recipesToDTOs(List<Recipe> recipes) {
@@ -29,10 +31,7 @@ public class PersistenceHelper {
     }
 
     public Recipe dtoToRecipe(RecipeDTO dto) {
-        return new Recipe(dto.getId(), dto.getTitle(), dto.getDescription(), dto.getBody(),
-                          dto.getIngredients().stream()
-                             .map(PersistenceHelper::dtoToIngredient)
-                             .collect(Collectors.toUnmodifiableList()));
+        return new Recipe(dto.getId(), dto.getTitle(), dto.getDescription(), dto.getBody(), new HashSet<>());
     }
 
     public List<Recipe> dtosToRecipes(List<RecipeDTO> dtos) {

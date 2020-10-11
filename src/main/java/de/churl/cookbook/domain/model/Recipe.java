@@ -3,7 +3,7 @@ package de.churl.cookbook.domain.model;
 import de.churl.cookbook.domain.model.ingredients.Ingredient;
 import lombok.Value;
 
-import java.util.List;
+import java.util.Set;
 
 @Value
 public class Recipe {
@@ -14,5 +14,5 @@ public class Recipe {
     String description;
     String body;
 
-    List<Ingredient> ingredients;
+    Set<Ingredient> ingredients;
 }

@@ -1,12 +1,13 @@
 package de.churl.cookbook.persistence.dto;
 
+import de.churl.cookbook.domain.model.ingredients.Ingredient;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @Data
@@ -21,5 +22,11 @@ public class RecipeDTO {
     String body;
 
     @MappedCollection
-    List<IngredientDTO> ingredients;
+    Set<IngredientRef> ingredients;
+
+    public void addIngredient(Ingredient ingredient) {
+        ingredients.add(new IngredientRef(ingredient.getId()));
+    }
+
+
 }
