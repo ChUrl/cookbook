@@ -6,12 +6,14 @@ import de.churl.cookbook.domain.utility.PersistenceHelper;
 import de.churl.cookbook.persistence.IngredientRepository;
 import de.churl.cookbook.persistence.RecipeRepository;
 import de.churl.cookbook.persistence.dto.IngredientDTO;
+import de.churl.cookbook.persistence.dto.IngredientRef;
 import de.churl.cookbook.persistence.dto.RecipeDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -28,7 +30,15 @@ public class PersistenceService {
     public List<Recipe> findAllRecipes() {
         // TODO: Many to Many wird noch nicht aufgelöst, für jedes Rezept müssen noch die
         // TODO: IngredientRefs zu Ingredients aufgelöst werden.
-        return PersistenceHelper.dtosToRecipes(recipeRepository.findAll());
+        List<RecipeDTO> dtos = recipeRepository.findAll();
+        List<IngredientRef> ingredientRefs = dtos.stream()
+                                                 .flatMap(dto -> dto.getIngredients().stream())
+                                                 .collect(Collectors.toUnmodifiableList());
+        Iterable<IngredientDTO> ingredientDTOs =
+                ingredientRepository.findAllById(ingredientRefs.stream()
+                                                               .map(ref -> ref.getIngredient())
+                                                               .collect(Collectors.toUnmodifiableList()));
+        return PersistenceHelper.dtosToRecipes(dtos, ingredientDTOs);
     }
 
     public Recipe findRecipeById(String id) {
