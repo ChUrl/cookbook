@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c351b8c1-af5c-4977-a031-7d4bb187ee5f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/churl/cookbook/domain/service/PersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/churl/cookbook/domain/service/PersistenceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/churl/cookbook/domain/utility/PersistenceHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/churl/cookbook/domain/utility/PersistenceHelper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,6 +58,9 @@
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1jN9ErV9pxTEnposp07eUw74peV" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="abbreviatePackageNames" value="true" />
     <option name="autoscrollFromSource" value="true" />
@@ -82,14 +88,16 @@
     <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
     <property name="show.unlinked.gradle.project.popup" value="true" />
   </component>
-  <component name="RunManager" selected="npm.css:prod">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+  <component name="RunManager" selected="Spring Boot.CookbookApplication">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -148,7 +156,8 @@
       <workItem from="1614176678408" duration="89000" />
       <workItem from="1614176873729" duration="9000" />
       <workItem from="1614176917123" duration="3375000" />
-      <workItem from="1614181603900" duration="6813000" />
+      <workItem from="1614181603900" duration="8781000" />
+      <workItem from="1614194634598" duration="314000" />
     </task>
     <task id="LOCAL-00001" summary="update nodejs deps + tailwind config">
       <created>1614186346680</created>
@@ -171,7 +180,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614186473009</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="add .idea">
+      <created>1614189559798</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1614189559798</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
