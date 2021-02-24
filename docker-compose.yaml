@@ -2,3 +2,14 @@ version: "3.8"
 services:
   dbpostgres:
     image: library/postgres:13.2-alpine
+    container_name: "postgres-db-docker"
+    restart: always
+    environment:
+      POSTGRES_DB: "cookbook"
+      POSTGRES_USER: "dev"
+      POSTGRES_PASSWORD: "dbpw"
+    ports:
+      - "8082:5432"
+    volumes:
+      - "./postgres/storage:/var/lib/postgresql/data"
+      - "./postgres/entrypoint/init.sql:/docker-entrypoint-initdb.d/init.sql"
