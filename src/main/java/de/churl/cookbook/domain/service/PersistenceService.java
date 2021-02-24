@@ -34,8 +34,7 @@ public class PersistenceService {
         List<IngredientRef> ingredientRefs = dtos.stream()
                                                  .flatMap(dto -> dto.getIngredients().stream())
                                                  .collect(Collectors.toUnmodifiableList());
-        Iterable<IngredientDTO> ingredientDTOs =
-                ingredientRepository.findAllById(ingredientRefs.stream()
+        Iterable<IngredientDTO> ingredientDTOs = ingredientRepository.findAllById(ingredientRefs.stream()
                                                                .map(ref -> ref.getIngredient())
                                                                .collect(Collectors.toUnmodifiableList()));
         return PersistenceHelper.dtosToRecipes(dtos, ingredientDTOs);

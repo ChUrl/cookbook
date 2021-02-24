@@ -34,7 +34,7 @@ public class PersistenceHelper {
         return new Recipe(dto.getId(), dto.getTitle(), dto.getDescription(), dto.getBody(), new HashSet<>());
     }
 
-    public List<Recipe> dtosToRecipes(List<RecipeDTO> dtos, List<IngredientDTO> ingredientDTOs) {
+    public List<Recipe> dtosToRecipes(List<RecipeDTO> dtos, Iterable<IngredientDTO> ingredientDTOs) {
         // TODO
         return null;
     }
