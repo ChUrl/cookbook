@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS recipe;
+CREATE TABLE recipe(
+    id INT AUTO_INCREMENT
+    PRIMARY KEY (id)
+);
