@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c351b8c1-af5c-4977-a031-7d4bb187ee5f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-    </list>
+    <list default="true" id="c351b8c1-af5c-4977-a031-7d4bb187ee5f" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -148,7 +146,7 @@
       <workItem from="1614176678408" duration="89000" />
       <workItem from="1614176873729" duration="9000" />
       <workItem from="1614176917123" duration="3375000" />
-      <workItem from="1614181603900" duration="4844000" />
+      <workItem from="1614181603900" duration="5161000" />
     </task>
     <task id="LOCAL-00001" summary="update nodejs deps + tailwind config">
       <created>1614186346680</created>
@@ -164,7 +162,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614186351562</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add .idea">
+      <created>1614186473009</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1614186473009</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,7 +189,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update nodejs deps + tailwind config" />
-    <option name="LAST_COMMIT_MESSAGE" value="update nodejs deps + tailwind config" />
+    <MESSAGE value="add .idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="add .idea" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
