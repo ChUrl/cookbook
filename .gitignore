@@ -34,3 +34,4 @@ out/
 
 ### Node ###
 node_modules/
+.idea/workspace.xml
