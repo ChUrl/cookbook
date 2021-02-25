@@ -20,6 +20,7 @@ build/
 *.ipr
 out/
 /.idea/sonarlint/
+/.idea/dataSources/
 
 ### NetBeans ###
 /nbproject/private/
