@@ -21,6 +21,7 @@ build/
 /out/
 /.idea/sonarlint/
 /.idea/dataSources/
+/.idea/shelf/
 /.idea/workspace.xml
 
 ### NetBeans ###
