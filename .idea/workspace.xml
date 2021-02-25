@@ -5,18 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c351b8c1-af5c-4977-a031-7d4bb187ee5f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/63b04cc6-a86f-4ed4-82e7-ffc38538125d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/63b04cc6-a86f-4ed4-82e7-ffc38538125d.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/63b04cc6-a86f-4ed4-82e7-ffc38538125d/storage_v2/_src_/database/cookbook.MQZk3w/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/63b04cc6-a86f-4ed4-82e7-ffc38538125d/storage_v2/_src_/database/cookbook.MQZk3w/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/churl/cookbook/domain/service/PersistenceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/churl/cookbook/domain/service/PersistenceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/churl/cookbook/domain/utility/PersistenceHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/churl/cookbook/domain/utility/PersistenceHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/postgres/entrypoint/data.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/postgres/entrypoint/schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postgres/entrypoint/data.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/postgres/entrypoint/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/postgres/entrypoint/init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postgres/entrypoint/schema.sql" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,18 +123,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yaml: Compose Deployment">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Docker.docker-compose.yaml.dbpostgres: Compose Deployment">
     <configuration name="CookbookApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="cookbook.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="de.churl.cookbook.CookbookApplication" />
@@ -149,6 +135,19 @@
     <configuration name="docker-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yaml.dbpostgres: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="dbpostgres" />
+            </list>
+          </option>
           <option name="sourceFilePath" value="docker-compose.yaml" />
         </settings>
       </deployment>
@@ -180,12 +179,14 @@
     </configuration>
     <list>
       <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yaml.dbpostgres: Compose Deployment" />
       <item itemvalue="npm.css:dev" />
       <item itemvalue="npm.css:prod" />
       <item itemvalue="Spring Boot.CookbookApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yaml.dbpostgres: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
       </list>
     </recent_temporary>
@@ -209,6 +210,9 @@
       <workItem from="1614181603900" duration="8781000" />
       <workItem from="1614194634598" duration="3885000" />
       <workItem from="1614198557892" duration="1039000" />
+      <workItem from="1614247136298" duration="1726000" />
+      <workItem from="1614248882706" duration="420000" />
+      <workItem from="1614249326364" duration="3551000" />
     </task>
     <task id="LOCAL-00001" summary="update nodejs deps + tailwind config">
       <created>1614186346680</created>

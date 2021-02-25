@@ -10,7 +10,9 @@
       <user-name>dev</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node kind="database" qname="cookbook" />
+          <node kind="database" qname="cookbook">
+            <node kind="schema" qname="@" />
+          </node>
         </introspection-scope>
       </schema-mapping>
     </data-source>
