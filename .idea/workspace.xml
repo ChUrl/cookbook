@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c351b8c1-af5c-4977-a031-7d4bb187ee5f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/63b04cc6-a86f-4ed4-82e7-ffc38538125d.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/63b04cc6-a86f-4ed4-82e7-ffc38538125d.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/63b04cc6-a86f-4ed4-82e7-ffc38538125d/storage_v2/_src_/database/cookbook.MQZk3w/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/63b04cc6-a86f-4ed4-82e7-ffc38538125d/storage_v2/_src_/database/cookbook.MQZk3w/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgres/entrypoint/data.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgres/entrypoint/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/postgres/entrypoint/init.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgres/entrypoint/schema.sql" beforeDir="false" />
-    </list>
+    <list default="true" id="c351b8c1-af5c-4977-a031-7d4bb187ee5f" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -212,7 +202,7 @@
       <workItem from="1614198557892" duration="1039000" />
       <workItem from="1614247136298" duration="1726000" />
       <workItem from="1614248882706" duration="420000" />
-      <workItem from="1614249326364" duration="3551000" />
+      <workItem from="1614249326364" duration="3726000" />
     </task>
     <task id="LOCAL-00001" summary="update nodejs deps + tailwind config">
       <created>1614186346680</created>
