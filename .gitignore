@@ -18,9 +18,10 @@ build/
 *.iws
 *.iml
 *.ipr
-out/
+/out/
 /.idea/sonarlint/
 /.idea/dataSources/
+/.idea/workspace.xml
 
 ### NetBeans ###
 /nbproject/private/
@@ -34,4 +35,3 @@ out/
 
 ### Node ###
 node_modules/
-.idea/workspace.xml
