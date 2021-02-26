@@ -16,29 +16,24 @@ import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
-@Table(name = "recipes")
+@Table(name = "ingredients")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Recipe {
+public class Ingredient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "recipe_id")
-    private Integer recipeID;
+    @Column(name = "ingr_id")
+    private Integer ingrID;
 
-    @Size(max = 127)
-    @Column(name = "recipe_title", length = 127)
-    private String recipeTitle;
+    @Size(max = 63)
+    @Column(name = "ingr_title", length = 63)
+    private String ingrTitle;
 
-    @Size(max = 255)
-    @Column(name = "recipe_descr")
-    private String recipeDescr;
+    @Column(name = "ingr_type")
+    private IngredientType ingrType;
 
-    @Size(max = 8191)
-    @Column(name = "recipe_body", length = 8191)
-    private String recipeBody;
-
-    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "recipe")
     Set<IngredientUsage> ingredientUsages;
 }
