@@ -1,0 +1,105 @@
+#+TITLE: Trying REST-Testing
+
+* Simple GET-Request to index
+
+#+begin_src restclient
+GET http://0.0.0.0:8081/
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC html
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/style/tailwind_dev.css">
+    <link rel="icon" href="/image/cookbook.svg">
+
+    <title>Kochbuch - Rezepte</title>
+</head>
+
+<body class="bg-gray-200 text-gray-800">
+<header>
+    <nav class="fixed w-full top-0 flex items-center justify-between flex-wrap bg-white p-6 shadow-lg z-10">
+        <div class="flex items-center flex-shrink-0 text-indigo-700 mr-6">
+            <img class="fill-current h-8 w-8 mr-2" width="54" height="54" src="/image/cookbook.svg">
+            <span class="font-semibold text-xl tracking-tight select-none">Kochbuch</span>
+        </div>
+        <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+            <div class="text-sm lg:flex-grow">
+                <a href="/"
+                   class="block mt-4 lg:inline-block lg:mt-0 text-indigo-700 hover:text-indigo-400 mr-4 transition-colors duration-200">
+                    Rezepte
+                </a>
+                <a href="/ingredients"
+                   class="block mt-4 lg:inline-block lg:mt-0 text-indigo-700 hover:text-indigo-400 mr-4 transition-colors duration-200">
+                    Zutaten
+                </a>
+                <a href="/timeline"
+                   class="block mt-4 lg:inline-block lg:mt-0 text-indigo-700 hover:text-indigo-400 mr-4 transition-colors duration-200">
+                    Kalender
+                </a>
+                <a href="/search"
+                   class="block mt-4 lg:inline-block lg:mt-0 text-indigo-700 hover:text-indigo-400 mr-4 transition-colors duration-200">
+                    Suchen
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main class="mt-24 mb-4 mx-auto w-3/4">
+    <h1 class="font-light text-2xl select-none mb-6">Alle Rezepte</h1>
+    <a class="btn-indigo mb-4 inline-block" href="/new">Neues Rezept</a>
+
+</main>
+
+<footer class="z-10">
+    <!-- TODO: Accountinfo -->
+</footer>
+</body>
+
+<!--
+Standard Filestruktur:
+
+
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/skeleton :: html(
+      title='',
+      bodycontent=~{:: bodycontent})">
+
+<th:block th:fragment="bodycontent">
+
+</th:block>
+
+</html>
+-->
+
+<!--
+Standard Style:
+
+Überschrift: indigo-700
+Link hover: indigo-400
+
+Schatten: shadow-md
+
+Polster: py-2 px-4
+Abstand: mb-6 für Überschrift
+         mb-4 für Karten
+-->
+
+
+<!-- GET http://0.0.0.0:8081/ -->
+<!-- HTTP/1.1 200  -->
+<!-- Content-Type: text/html;charset=UTF-8 -->
+<!-- Content-Language: en-US -->
+<!-- Transfer-Encoding: chunked -->
+<!-- Date: Thu, 25 Feb 2021 14:11:41 GMT -->
+<!-- Keep-Alive: timeout=60 -->
+<!-- Connection: keep-alive -->
+<!-- Request duration: 0.016360s -->
+#+END_SRC
