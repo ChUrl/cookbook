@@ -9,7 +9,15 @@ module.exports = {
         extend: {}
     },
     variants: {
-        extend: {}
+        extend: {
+            padding: ['active', 'hover', 'focus'],
+            margin: ['active', 'hover', 'focus'],
+            boxShadow: ['active', 'hover', 'focus'],
+            scale: ['active', 'hover', 'focus'],
+            textColor: ['active', 'hover', 'focus'],
+            backgroundColor: ['active', 'hover', 'focus'],
+            borderColor: ['active', 'hover', 'focus']
+        }
     },
     plugins: []
 }

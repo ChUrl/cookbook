@@ -12,4 +12,4 @@ services:
       - 8082:5432
     volumes:
       - ./postgres/storage:/var/lib/postgresql/data
-      - ./postgres/entrypoint/init.sql:/docker-entrypoint-initdb.d/init.sql
+#      - ./postgres/entrypoint/init.sql:/docker-entrypoint-initdb.d/init.sql
