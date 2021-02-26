@@ -15,26 +15,26 @@
 <body class="bg-gray-200 text-gray-800">
 <header>
     <nav th:fragment="nav" class="fixed w-full top-0 flex items-center justify-between flex-wrap bg-white p-6 shadow-lg z-10">
-        <div class="flex items-center flex-shrink-0 text-teal-700 mr-6">
+        <div class="flex items-center flex-shrink-0 text-gray-900 mr-6">
             <img class="fill-current h-8 w-8 mr-2" width="54" height="54" th:src="@{/image/cookbook.svg}">
-            <span class="font-semibold text-xl tracking-tight select-none">Kochbuch</span>
+            <span class="font-medium text-2xl tracking-tight select-none">Kochbuch</span>
         </div>
         <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
-            <div class="text-sm lg:flex-grow">
+            <div class="text-lg tracking-tight text-indigo-900 lg:flex-grow">
                 <a href="/"
-                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-700 hover:text-teal-400 mr-4 transition-colors duration-200">
+                   class="block mt-4 lg:inline-block lg:mt-0 hover:text-indigo-500 mr-4 transition-all duration-200">
                     Rezepte
                 </a>
                 <a href="/ingredients"
-                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-700 hover:text-teal-400 mr-4 transition-colors duration-200">
+                   class="block mt-4 lg:inline-block lg:mt-0 hover:text-indigo-500 mr-4 transition-all duration-200">
                     Zutaten
                 </a>
                 <a href="/timeline"
-                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-700 hover:text-teal-400 mr-4 transition-colors duration-200">
+                   class="block mt-4 lg:inline-block lg:mt-0 hover:text-indigo-500 mr-4 transition-all duration-200">
                     Kalender
                 </a>
                 <a href="/search"
-                   class="block mt-4 lg:inline-block lg:mt-0 text-teal-700 hover:text-teal-400 mr-4 transition-colors duration-200">
+                   class="block mt-4 lg:inline-block lg:mt-0 hover:text-indigo-500 mr-4 transition-all duration-200">
                     Suchen
                 </a>
             </div>
@@ -71,8 +71,8 @@ Standard Filestruktur:
 <!--
 Standard Style:
 
-Überschrift: teal-700
-Link hover: teal-400
+Überschrift: indigo-700
+Link hover: indigo-400
 
 Schatten: shadow-md
 

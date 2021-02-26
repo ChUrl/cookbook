@@ -14,7 +14,7 @@
                 </label>
                 <input type="text" name="recipe_title" placeholder="Name" id="recipe_title" required
                        minlength="3" maxlength="64"
-                       class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight">
+                       class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight border-2 focus:border-indigo-900 transition-all duration-200 outline-none focus:shadow-lg">
             </div>
             <div class="mb-4">
                 <label for="recipe_desc" class="block text-gray-700 text-sm font-bold mb-2">
@@ -22,7 +22,7 @@
                 </label>
                 <input type="text" name="recipe_desc" placeholder="Kurzbeschreibung" id="recipe_desc"
                        required minlength="3" maxlength="256"
-                       class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight">
+                       class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight border-2 focus:border-indigo-900 transition-all duration-200 outline-none focus:shadow-lg">
             </div>
             <div class="mb-4">
                 <label for="recipe_body" class="block text-gray-700 text-sm font-bold mb-2">
@@ -30,9 +30,9 @@
                 </label>
                 <textarea type="text" name="recipe_body" placeholder="Rezept" rows="5" id="recipe_body"
                           required minlength="3" maxlength="8192"
-                          class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight resize-none resize-auto"></textarea>
+                          class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight resize-none resize-auto border-2 focus:border-indigo-900 transition-all duration-200 outline-none focus:shadow-lg"></textarea>
             </div>
-            <input type="submit" class="btn-teal">
+            <input type="submit" class="btn-indigo">
         </form>
     </div>
 
@@ -41,47 +41,22 @@
         <h3 class="text-xl font-bold mb-4 flex-grow mr-6">Formatierung:</h3>
         <div class="flex-grow w-full">
             <ul class="list-disc list-inside mb-4">
-                <li>
-                    <a class="cursor-pointer" onclick="insertAtCursor('== ', 0)">Große
-                                                                                 Überschrift</a>
-                </li>
-                <li><a class="cursor-pointer" onclick="insertAtCursor('=== ', 0)">Kleine
-                                                                                  Überschrift</a>
-                </li>
-            </ul>
-            <ul class="list-disc list-inside mb-4">
-                <li><a class="cursor-pointer" onclick="insertAtCursor('* ', 0)">Ungeordnete
-                                                                                Liste</a>
-                </li>
-                <li><a class="cursor-pointer" onclick="insertAtCursor('. ', 0)">Geordnete Liste</a>
-                </li>
-                <li><a class="cursor-pointer" onclick="insertAtCursor('* [*] ', 0)">Angekreuzt</a>
-                </li>
-                <li><a class="cursor-pointer" onclick="insertAtCursor('* [ ] ', 0)">Nicht
-                                                                                    Angekreuzt</a>
-                </li>
+<!--                Use Comments to remove whitespace that leads to weird spacing-->
+                <li><a class="cursor-pointer" onclick="insertAtCursor('### ', 0)">Überschrift</a></li><!--
+                --><li><a class="cursor-pointer" onclick="insertAtCursor('<hr>\n', 0)">Trennlinie</a></li><!--
+                --><li><a class="cursor-pointer" onclick="insertAtCursor('<br>\n', 0)">Zeilenumbruch</a></li><!--
+                --><li><a class="cursor-pointer" onclick="insertAtCursor('\n\n', 0)">Neuer Paragraph</a></li><!--
+                --><li><a class="cursor-pointer" onclick="insertAtCursor('- ', 0)">Ungeordnete Liste</a></li><!--
+                --><li><a class="cursor-pointer" onclick="insertAtCursor('1. ', 0)">Nummerierte Liste</a></li>
             </ul>
         </div>
         <div class="flex-grow w-full">
             <ul class="list-disc list-inside">
-                <li><a class="cursor-pointer font-bold" onclick="insertAtCursor('**', -1)">Fett</a>
-                </li>
-                <li><a class="cursor-pointer italic" onclick="insertAtCursor('__', -1)">Kursiv</a>
-                </li>
-                <li><a class="cursor-pointer" onclick="insertAtCursor('``', -1)">Monospace</a></li>
-                <li><a class="cursor-pointer bg-yellow-500" onclick="insertAtCursor('##', -1)">Markiert</a>
-                </li>
-                <li>
-                    <a class="cursor-pointer underline" onclick="insertAtCursor('[.underline]##', -1)">Unterstrichen</a>
-                </li>
-                <li>
-                    <a class="cursor-pointer line-through" onclick="insertAtCursor('[.line-through]##', -1)">Durchgestrichen</a>
-                </li>
-                <li><a class="cursor-pointer" onclick="insertAtCursor('^^', -1)">Hochgestellt</a>
-                </li>
-                <li>
-                    <a class="cursor-pointer" onclick="insertAtCursor('~~', -1)">Heruntergestellt</a>
-                </li>
+                <li><a class="cursor-pointer font-bold" onclick="insertAtCursor('****', -2)">Fett</a></li><!--
+                --><li><a class="cursor-pointer italic" onclick="insertAtCursor('**', -1)">Kursiv</a></li><!--
+                --><li><a class="cursor-pointer bg-yellow-500" onclick="insertAtCursor('<mark><mark/>', -7)">Markiert</a></li><!--
+                --><li><a class="cursor-pointer underline" onclick="insertAtCursor('++++', -2)">Unterstrichen</a></li><!--
+                --><li><a class="cursor-pointer line-through" onclick="insertAtCursor('~~~~', -2)">Durchgestrichen</a></li>
             </ul>
         </div>
     </div>

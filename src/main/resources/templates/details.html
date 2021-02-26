@@ -5,17 +5,17 @@
       bodycontent=~{:: bodycontent})">
 
 <th:block th:fragment="bodycontent">
-    <h1 class="font-light text-2xl select-none mb-3 text-teal-700" th:text="${recipe.getTitle()}"></h1>
-    <p th:text="${recipe.getDescription()}" class="text-md font-light select-none mb-4"></p>
+    <h1 class="font-light text-2xl select-none mb-3 text-indigo-700" th:text="${recipe.getRecipeTitle()}"></h1>
+    <p th:text="${recipe.getRecipeDescr()}" class="text-md font-light select-none mb-4"></p>
     <div class="bg-white shadow-md rounded w-full h-full p-4">
         <!--
         <div class="flex-row">
             <span class="w-full"></span>
             <span class="bg-green-700 rounded-full p-1 font-light text-white text-xs select-none">Schnell</span>
         </div>
-        <hr class="border-t-1 border-solid border-teal-900 my-2">
+        <hr class="border-t-1 border-solid border-indigo-900 my-2">
         -->
-        <div class="asciidoc">
+        <div class="markdown">
             <th:block th:utext="${bodyhtml}"></th:block>
         </div>
     </div>

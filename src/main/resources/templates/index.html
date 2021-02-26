@@ -6,12 +6,12 @@
 
 <th:block th:fragment="bodycontent">
     <h1 class="font-light text-2xl select-none mb-6">Alle Rezepte</h1>
-    <a class="btn-teal mb-4 inline-block" th:href="@{/new}">Neues Rezept</a>
-    <a th:each="recipe : ${recipes}" th:href="@{/details/{id} (id=${recipe.getId()})}">
+    <a class="btn-indigo mb-4 inline-block" th:href="@{/new}">Neues Rezept</a>
+    <a th:each="recipe : ${recipes}" th:href="@{/details/{id} (id=${recipe.getRecipeID()})}">
         <div class="rounded bg-white shadow-md mb-4 p-4 hover:shadow-xl transition-all duration-200 cursor-pointer transform hover:scale-105">
-            <h1 class="text-teal-700 font-light text-xl tracking-wide" th:text="${recipe.getTitle()}"></h1>
-            <hr class="border-t-1 border-solid border-teal-900 my-2">
-            <p th:text="${recipe.getDescription()}" class="text-md select-none"></p>
+            <h1 class="text-indigo-700 font-light text-xl tracking-wide" th:text="${recipe.getRecipeTitle()}"></h1>
+            <hr class="sep-indigo">
+            <p th:text="${recipe.getRecipeDescr()}" class="text-md select-none"></p>
         </div>
     </a>
 </th:block>
