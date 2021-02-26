@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/skeleton :: html(title='Rezept Details', bodycontent=~{:: bodycontent})">
+
+<th:block th:fragment="bodycontent">
+    <h1 class="heading-1" th:text="${recipe.getRecipeTitle()}"></h1>
+    <p th:text="${recipe.getRecipeDescr()}" class="heading-2"></p>
+    <div class="cnt-card">
+        <!--
+        <div class="flex-row">
+            <span class="w-full"></span>
+            <span class="bg-green-700 rounded-full p-1 font-light text-white text-xs select-none">Schnell</span>
+        </div>
+        <hr class="border-t-1 border-solid border-indigo-900 my-2">
+        -->
+        <div class="markdown">
+            <th:block th:utext="${bodyhtml}"></th:block>
+        </div>
+    </div>
+</th:block>
+
+</html>

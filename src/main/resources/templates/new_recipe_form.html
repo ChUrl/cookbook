@@ -1,47 +1,37 @@
 <!DOCTYPE html>
 <html lang="de" xmlns:th="http://www.thymeleaf.org"
-      th:replace="fragments/skeleton :: html(
-      title='Neues Rezept',
-      bodycontent=~{:: bodycontent})">
+      th:replace="fragments/skeleton :: html(title='Neues Rezept', bodycontent=~{:: bodycontent})">
 
 <th:block th:fragment="bodycontent">
-    <h1 class="font-light text-2xl select-none mb-6">Neues Rezept</h1>
-    <div class="bg-white rounded shadow-md w-full h-full p-4 mb-6">
+    <h1 class="heading-1">Neues Rezept</h1>
+    <p class="heading-2">Ein neues Rezept zur Sammlung hinzufügen.</p>
+    <div class="cnt-card">
         <form th:action="@{/new/submit}" method="post">
             <div class="mb-4">
-                <label for="recipe_title" class="block text-gray-700 text-sm font-bold mb-2">
-                    Name
-                </label>
+                <label for="recipe_title" class="form-label">Name</label>
                 <input type="text" name="recipe_title" placeholder="Name" id="recipe_title" required
-                       minlength="3" maxlength="64"
-                       class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight border-2 focus:border-indigo-900 transition-all duration-200 outline-none focus:shadow-lg">
+                       minlength="3" maxlength="64" class="form-field">
             </div>
             <div class="mb-4">
-                <label for="recipe_desc" class="block text-gray-700 text-sm font-bold mb-2">
-                    Beschreibung
-                </label>
+                <label for="recipe_desc" class="form-label">Beschreibung</label>
                 <input type="text" name="recipe_desc" placeholder="Kurzbeschreibung" id="recipe_desc"
-                       required minlength="3" maxlength="256"
-                       class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight border-2 focus:border-indigo-900 transition-all duration-200 outline-none focus:shadow-lg">
+                       required minlength="3" maxlength="256" class="form-field">
             </div>
             <div class="mb-4">
-                <label for="recipe_body" class="block text-gray-700 text-sm font-bold mb-2">
-                    Rezept
-                </label>
+                <label for="recipe_body" class="form-label">Rezept</label>
                 <textarea type="text" name="recipe_body" placeholder="Rezept" rows="5" id="recipe_body"
-                          required minlength="3" maxlength="8192"
-                          class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight resize-none resize-auto border-2 focus:border-indigo-900 transition-all duration-200 outline-none focus:shadow-lg"></textarea>
+                          required minlength="3" maxlength="8192" class="form-field resize-auto"></textarea>
             </div>
             <input type="submit" class="btn-indigo">
         </form>
     </div>
 
     <!-- Legende -->
-    <div class="bg-white rounded shadow-md w-full h-full p-4 flex font-mono">
-        <h3 class="text-xl font-bold mb-4 flex-grow mr-6">Formatierung:</h3>
-        <div class="flex-grow w-full">
+    <div class="cnt-card flex font-mono">
+        <span class="text-xl font-bold mr-6">Formatierung:</span>
+        <div class="w-full">
             <ul class="list-disc list-inside mb-4">
-<!--                Use Comments to remove whitespace that leads to weird spacing-->
+                <!--Use Comments to remove whitespace that leads to weird spacing-->
                 <li><a class="cursor-pointer" onclick="insertAtCursor('### ', 0)">Überschrift</a></li><!--
                 --><li><a class="cursor-pointer" onclick="insertAtCursor('<hr>\n', 0)">Trennlinie</a></li><!--
                 --><li><a class="cursor-pointer" onclick="insertAtCursor('<br>\n', 0)">Zeilenumbruch</a></li><!--
@@ -50,7 +40,7 @@
                 --><li><a class="cursor-pointer" onclick="insertAtCursor('1. ', 0)">Nummerierte Liste</a></li>
             </ul>
         </div>
-        <div class="flex-grow w-full">
+        <div class="w-full">
             <ul class="list-disc list-inside">
                 <li><a class="cursor-pointer font-bold" onclick="insertAtCursor('****', -2)">Fett</a></li><!--
                 --><li><a class="cursor-pointer italic" onclick="insertAtCursor('**', -1)">Kursiv</a></li><!--

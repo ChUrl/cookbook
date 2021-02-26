@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/skeleton :: html(title='Rezepte', bodycontent=~{:: bodycontent})">
+
+<th:block th:fragment="bodycontent">
+    <h1 class="heading-1">Alle Rezepte</h1>
+    <a class="btn-indigo mb-4" th:href="@{/new}">Neues Rezept</a>
+    <a th:each="recipe : ${recipes}" th:href="@{/details/{id} (id=${recipe.getRecipeID()})}">
+        <div class="cnt-card-trans cursor-pointer hover:shadow-xl hover:scale-105">
+            <h1 class="heading-1 mb-2" th:text="${recipe.getRecipeTitle()}"></h1>
+            <hr class="sep-indigo">
+            <p th:text="${recipe.getRecipeDescr()}" class="heading-2 mb-0"></p>
+        </div>
+    </a>
+</th:block>
+
+</html>

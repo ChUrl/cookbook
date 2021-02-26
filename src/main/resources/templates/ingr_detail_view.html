@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="de" xmlns:th="http://www.thymeleaf.org"
-      th:replace="fragments/skeleton :: html(
-      title='Details',
-      bodycontent=~{:: bodycontent})">
+      th:replace="fragments/skeleton :: html(title='Zutat Details', bodycontent=~{:: bodycontent})">
 
 <th:block th:fragment="bodycontent">
-    <h1 class="font-light text-2xl select-none mb-3 text-indigo-700" th:text="${recipe.getRecipeTitle()}"></h1>
-    <p th:text="${recipe.getRecipeDescr()}" class="text-md font-light select-none mb-4"></p>
+    <h1 class="heading-1" th:text="${ingr.getIngrTitle()}"></h1>
+    <p th:text="${ingr.getIngrType()}" class="heading-2"></p>
     <div class="bg-white shadow-md rounded w-full h-full p-4">
         <!--
         <div class="flex-row">

@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="de" xmlns:th="http://www.thymeleaf.org"
-      th:replace="fragments/skeleton :: html(
-      title='Neue Zutat',
-      bodycontent=~{:: bodycontent})">
+      th:replace="fragments/skeleton :: html(title='Neue Zutat', bodycontent=~{:: bodycontent})">
 
 <th:block th:fragment="bodycontent">
     <h1 class="font-light text-2xl select-none mb-6">Neue Zutat</h1>
+    <p class="heading-2">Eine neue Zutat für die Verwendung in Rezepten registrieren.</p>
     <div class="bg-white rounded shadow-md w-full h-full p-4 mb-6">
         <form th:action="@{/ingredients/new/submit}" method="post">
             <div class="mb-4">
