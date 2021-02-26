@@ -41,12 +41,12 @@ public class CookBookController {
     public String index(Model model) {
         model.addAttribute("recipes", this.recipeRepository.findAll());
 
-        return "index";
+        return "all_recipe_list";
     }
 
     @GetMapping("/new")
     public String newRecipe() {
-        return "new";
+        return "new_recipe_form";
     }
 
     // TODO: Im Form müssen die Zutaten ausgewählt werden
@@ -86,7 +86,7 @@ public class CookBookController {
             model.addAttribute("bodyhtml", render.render(node));
         }
 
-        return "details";
+        return "recipe_detail_view";
     }
 
     // TODO: Rezeptkörper, titel, beschreibung bearbeiten
@@ -108,7 +108,7 @@ public class CookBookController {
         // TODO: Use service
         model.addAttribute("ingredients", this.ingredientRepository.findAll());
 
-        return "ingredients";
+        return "all_ingr_list";
     }
 
     @GetMapping("/ingredients/new")
@@ -116,7 +116,7 @@ public class CookBookController {
         // TODO: Move from enum to db table?
         model.addAttribute("types", Arrays.asList(IngredientType.values()));
 
-        return "ingredients_new";
+        return "new_ingr_form";
     }
 
     @PostMapping("/ingredients/new/submit")
