@@ -20,3 +20,7 @@ VALUES (10000, 'Kartoffelsalat', 'Ein Salat aus Kartoffeln, der Kartoffeln beinh
 **SternStern**<br>
 ***SternSternStern***<br>
 <mark>MarkTag<mark/>');
+
+INSERT INTO ingredients (ingr_id, ingr_title, ingr_type)
+VALUES (10000, 'Kartoffeln', 4),
+       (10001, 'Karotten', 4);
