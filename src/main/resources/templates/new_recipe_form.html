@@ -5,6 +5,7 @@
 <th:block th:fragment="bodycontent">
     <h1 class="heading-1">Neues Rezept</h1>
     <p class="heading-3">Ein neues Rezept zur Sammlung hinzufügen.</p>
+
     <div class="cnt-card">
         <form th:action="@{/new/submit}" method="post">
             <div class="mb-4">
@@ -20,8 +21,9 @@
             </div>
 
             <div class="mb-4">
-                <select name="recipe_ingrs" multiple>
-                    <option th:each="ingredient : ${ingredients}" th:value="${ingredient.getIngrID().toString()}" th:text="${ingredient.getIngrTitle()}"></option>
+                <label for="recipe_ingrs" class="form-label">Zutaten</label>
+                <select name="recipe_ingrs" id="recipe_ingrs" multiple>
+                    <option th:each="ingrDTO : ${ingrDTOs}" th:value="${ingrDTO.getExternal()}" th:text="${ingrDTO.getTitle()}"></option>
                 </select>
             </div>
 
@@ -37,6 +39,7 @@
     <!-- Legende -->
     <div class="cnt-card flex font-mono">
         <span class="text-xl font-bold mr-6">Formatierung:</span>
+
         <div class="w-full">
             <ul class="list-disc list-inside mb-4">
                 <!--Use Comments to remove whitespace that leads to weird spacing-->
@@ -48,6 +51,7 @@
                 --><li><a class="cursor-pointer" onclick="insertAtCursor('1. ', 0)">Nummerierte Liste</a></li>
             </ul>
         </div>
+
         <div class="w-full">
             <ul class="list-disc list-inside">
                 <li><a class="cursor-pointer font-bold" onclick="insertAtCursor('****', -2)">Fett</a></li><!--

@@ -5,11 +5,12 @@
 <th:block th:fragment="bodycontent">
     <h1 class="heading-1">Alle Rezepte</h1>
     <a class="btn-indigo mb-4" th:href="@{/new}">Neues Rezept</a>
-    <a th:each="recipe : ${recipes}" th:href="@{/details/{id} (id=${recipe.getRecipeID()})}">
+
+    <a th:each="recipeDTO : ${recipeDTOs}" th:href="@{/details/{id} (id=${recipeDTO.getExternal()})}">
         <div class="cnt-card-trans cursor-pointer hover:shadow-xl hover:scale-105">
-            <h1 class="heading-1 mb-2" th:text="${recipe.getRecipeTitle()}"></h1>
+            <h1 class="heading-1 mb-2" th:text="${recipeDTO.getTitle()}"></h1>
             <hr class="sep-indigo">
-            <p th:text="${recipe.getRecipeDescr()}" class="heading-3 mb-0"></p>
+            <p th:text="${recipeDTO.getDescr()}" class="heading-3 mb-0"></p>
         </div>
     </a>
 </th:block>

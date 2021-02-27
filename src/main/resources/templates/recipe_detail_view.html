@@ -3,14 +3,14 @@
       th:replace="fragments/skeleton :: html(title='Rezept Details', bodycontent=~{:: bodycontent})">
 
 <th:block th:fragment="bodycontent">
-    <h1 class="heading-1" th:text="${recipe.getRecipeTitle()}"></h1>
-    <p th:text="${recipe.getRecipeDescr()}" class="heading-3"></p>
+    <h1 class="heading-1" th:text="${recipeDTO.getTitle()}"></h1>
+    <p th:text="${recipeDTO.getDescr()}" class="heading-3"></p>
 
     <div class="cnt-card">
         <h1 class="heading-2">Zutaten</h1>
         <hr class="sep-indigo">
         <ul class="list-disc list-inside">
-            <li th:each="usage : ${recipe.getIngredientUsages()}" th:text="${usage.getIngredient().getIngrTitle()}"></li>
+            <li th:each="usage : ${recipeDTO.getIngredients().keySet()}" th:text="${usage.getTitle()}"></li>
         </ul>
     </div>
 
