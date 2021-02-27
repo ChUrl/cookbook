@@ -20,7 +20,9 @@
             </div>
 
             <div class="mb-4">
-                
+                <select name="recipe_ingrs" multiple>
+                    <option th:each="ingredient : ${ingredients}" th:value="${ingredient.getIngrID().toString()}" th:text="${ingredient.getIngrTitle()}"></option>
+                </select>
             </div>
 
             <div class="mb-4">
