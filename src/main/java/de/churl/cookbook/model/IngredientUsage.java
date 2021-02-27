@@ -24,14 +24,14 @@ public class IngredientUsage {
     private IngredientUsageKey ingredientUsageKey;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @MapsId("recipeID")
-    @JoinColumn(name = "recipe_id")
+    @MapsId("recipeID") // Mapping for the embedded primary key
+    @JoinColumn(name = "recipe_id") // Column where to join/"plug in"
     private Recipe recipe;
 
     @ManyToOne
     @MapsId("ingrID")
     @JoinColumn(name = "ingr_id")
-    private Ingredient ingredient;
+    private Ingredient ingr;
 
     private Integer amount;
 }

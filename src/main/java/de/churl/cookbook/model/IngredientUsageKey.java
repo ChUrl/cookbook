@@ -22,6 +22,7 @@ public class IngredientUsageKey implements Serializable {
     @Column(name = "ingr_id")
     private UUID ingrID;
 
+    @SuppressWarnings("NonFinalFieldReferenceInEquals")
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -34,6 +35,7 @@ public class IngredientUsageKey implements Serializable {
         return this.recipeID.equals(that.recipeID) && this.ingrID.equals(that.ingrID);
     }
 
+    @SuppressWarnings("NonFinalFieldReferencedInHashCode")
     @Override
     public int hashCode() {
         return Objects.hash(this.recipeID, this.ingrID);

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
 
@@ -31,6 +32,6 @@ public class Ingredient {
     @Column(name = "ingr_type")
     private IngredientType ingrType;
 
-    @OneToMany(mappedBy = "ingredient")
-    Set<IngredientUsage> ingredientUsages;
+    @OneToMany(mappedBy = "ingr") // Field in m:n table (IngredientUsage)
+    Collection<IngredientUsage> ingrUsages;
 }

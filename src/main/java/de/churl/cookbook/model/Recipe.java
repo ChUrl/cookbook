@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
 
@@ -30,7 +31,7 @@ public class Recipe {
     private String recipeTitle;
 
     @Size(max = 255)
-    @Column(name = "recipe_descr")
+    @Column(name = "recipe_descr", length = 255)
     private String recipeDescr;
 
     @Size(max = 8191)
@@ -38,5 +39,5 @@ public class Recipe {
     private String recipeBody;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-    Set<IngredientUsage> ingredientUsages;
+    Collection<IngredientUsage> ingrUsages;
 }
