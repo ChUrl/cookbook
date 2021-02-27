@@ -34,6 +34,6 @@ public class Ingredient {
     @Column(name = "ingr_type")
     private IngredientType ingrType;
 
-    @OneToMany(mappedBy = "recipe")
+    @OneToMany(mappedBy = "ingredient")
     Set<IngredientUsage> ingredientUsages;
 }

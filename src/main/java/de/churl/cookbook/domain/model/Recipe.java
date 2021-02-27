@@ -39,6 +39,6 @@ public class Recipe {
     @Column(name = "recipe_body", length = 8191)
     private String recipeBody;
 
-    @OneToMany(mappedBy = "ingredient", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     Set<IngredientUsage> ingredientUsages;
 }

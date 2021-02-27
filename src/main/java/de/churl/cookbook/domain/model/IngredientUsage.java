@@ -33,5 +33,5 @@ public class IngredientUsage {
     @JoinColumn(name = "ingr_id")
     private Ingredient ingredient;
 
-    private Number amount;
+    private Integer amount;
 }
