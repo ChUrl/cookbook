@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 
 @Embeddable
 @Getter
@@ -16,10 +17,10 @@ import java.util.Objects;
 public class IngredientUsageKey implements Serializable {
 
     @Column(name = "recipe_id")
-    private Integer recipeID;
+    private UUID recipeID;
 
     @Column(name = "ingr_id")
-    private Integer ingrID;
+    private UUID ingrID;
 
     @Override
     public boolean equals(Object o) {

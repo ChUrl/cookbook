@@ -2,6 +2,8 @@ package de.churl.cookbook.infrastructure.controller;
 
 import de.churl.cookbook.domain.model.Ingredient;
 import de.churl.cookbook.domain.model.IngredientType;
+import de.churl.cookbook.domain.model.IngredientUsage;
+import de.churl.cookbook.domain.model.IngredientUsageKey;
 import de.churl.cookbook.domain.model.Recipe;
 import de.churl.cookbook.domain.service.PersistenceService;
 import de.churl.cookbook.infrastructure.persistance.IngredientRepository;
@@ -23,8 +25,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Log4j2
 @RequiredArgsConstructor
@@ -45,7 +51,9 @@ public class CookBookController {
     }
 
     @GetMapping("/new")
-    public String newRecipe() {
+    public String newRecipe(Model model) {
+        model.addAttribute("ingredients", this.ingredientRepository.findAll());
+
         return "new_recipe_form";
     }
 
@@ -53,24 +61,42 @@ public class CookBookController {
     @PostMapping("/new/submit")
     public String newRecipeSubmit(@RequestParam("recipe_title") String title,
                                   @RequestParam("recipe_desc") String description,
+                                  @RequestParam("recipe_ingrs") Set<String> ingredients,
                                   @RequestParam("recipe_body") String body) {
 
+        // TODO: Use recipe DTO with requestbody?
         // TODO: Move to service
         final Recipe r = new Recipe();
+        r.setRecipeID(UUID.randomUUID());
         r.setRecipeTitle(title);
         r.setRecipeDescr(description);
         r.setRecipeBody(body);
+        r.setIngredientUsages(new HashSet<>());
+        for (String ingr : ingredients) {
+            Optional<Ingredient> ingropt = this.ingredientRepository.findById(UUID.fromString(ingr));
+            if (ingropt.isPresent()) {
+                Ingredient ingredient = ingropt.get();
+                IngredientUsageKey key = new IngredientUsageKey();
+                key.setRecipeID(r.getRecipeID());
+                key.setIngrID(UUID.fromString(ingr));
+                IngredientUsage usage = new IngredientUsage();
+                usage.setIngredientUsageKey(key);
+                usage.setRecipe(r);
+                usage.setIngredient(ingredient);
+                usage.setAmount(1);
+                r.getIngredientUsages().add(usage);
+            }
+        }
         this.recipeRepository.save(r);
-        // TODO: Hier muss die ID geholt werden und auf die Zutatenseite verlinkt werden.
 
-        return "redirect:/";
+        return "redirect:/details/" + r.getRecipeID();
     }
 
     @GetMapping("/details/{id}")
     public String details(@PathVariable("id") String id,
                           Model model) {
 
-        final Optional<Recipe> ropt = this.recipeRepository.findById(Integer.parseInt(id));
+        final Optional<Recipe> ropt = this.recipeRepository.findById(UUID.fromString(id));
         if (ropt.isPresent()) {
 
             final List<Extension> extensions = Arrays.asList(AutolinkExtension.create(),
@@ -124,6 +150,7 @@ public class CookBookController {
                                       @RequestParam("ingredient_type") String type) {
         // TODO: Move to service
         final Ingredient ingredient = new Ingredient();
+        ingredient.setIngrID(UUID.randomUUID());
         ingredient.setIngrTitle(title);
         ingredient.setIngrType(IngredientType.valueOf(type));
         this.ingredientRepository.save(ingredient);
@@ -132,6 +159,7 @@ public class CookBookController {
     }
 
     // TODO: @PostMapping("/ingredients/remove")
+    // TODO: @GetMapping("/ingredients/details/{id}")
 
     @GetMapping("/search")
     public String search() {

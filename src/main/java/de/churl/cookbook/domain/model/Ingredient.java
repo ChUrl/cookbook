@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "ingredients")
@@ -23,9 +24,8 @@ import java.util.Set;
 public class Ingredient {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ingr_id")
-    private Integer ingrID;
+    private UUID ingrID;
 
     @Size(max = 63)
     @Column(name = "ingr_title", length = 63)
