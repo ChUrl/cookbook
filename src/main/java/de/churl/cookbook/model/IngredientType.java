@@ -1,4 +1,4 @@
-package de.churl.cookbook.domain.model;
+package de.churl.cookbook.model;
 
 public enum IngredientType {
     VEGETABLE,

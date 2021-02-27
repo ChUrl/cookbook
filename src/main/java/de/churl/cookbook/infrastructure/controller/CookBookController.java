@@ -1,13 +1,13 @@
 package de.churl.cookbook.infrastructure.controller;
 
-import de.churl.cookbook.domain.model.Ingredient;
-import de.churl.cookbook.domain.model.IngredientType;
-import de.churl.cookbook.domain.model.IngredientUsage;
-import de.churl.cookbook.domain.model.IngredientUsageKey;
-import de.churl.cookbook.domain.model.Recipe;
-import de.churl.cookbook.domain.service.PersistenceService;
-import de.churl.cookbook.infrastructure.persistance.IngredientRepository;
-import de.churl.cookbook.infrastructure.persistance.RecipeRepository;
+import de.churl.cookbook.model.Ingredient;
+import de.churl.cookbook.model.IngredientType;
+import de.churl.cookbook.model.IngredientUsage;
+import de.churl.cookbook.model.IngredientUsageKey;
+import de.churl.cookbook.model.Recipe;
+import de.churl.cookbook.service.PersistenceService;
+import de.churl.cookbook.persistance.IngredientRepository;
+import de.churl.cookbook.persistance.RecipeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.commonmark.Extension;
@@ -30,7 +30,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Log4j2
 @RequiredArgsConstructor
