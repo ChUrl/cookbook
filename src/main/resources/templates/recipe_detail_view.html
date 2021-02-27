@@ -4,7 +4,16 @@
 
 <th:block th:fragment="bodycontent">
     <h1 class="heading-1" th:text="${recipe.getRecipeTitle()}"></h1>
-    <p th:text="${recipe.getRecipeDescr()}" class="heading-2"></p>
+    <p th:text="${recipe.getRecipeDescr()}" class="heading-3"></p>
+
+    <div class="cnt-card">
+        <h1 class="heading-2">Zutaten</h1>
+        <hr class="sep-indigo">
+        <ul class="list-disc list-inside">
+            <li th:each="usage : ${recipe.getIngredientUsages()}" th:text="${usage.getIngredient().getIngrTitle()}"></li>
+        </ul>
+    </div>
+
     <div class="cnt-card">
         <!--
         <div class="flex-row">

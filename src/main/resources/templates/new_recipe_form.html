@@ -4,7 +4,7 @@
 
 <th:block th:fragment="bodycontent">
     <h1 class="heading-1">Neues Rezept</h1>
-    <p class="heading-2">Ein neues Rezept zur Sammlung hinzufügen.</p>
+    <p class="heading-3">Ein neues Rezept zur Sammlung hinzufügen.</p>
     <div class="cnt-card">
         <form th:action="@{/new/submit}" method="post">
             <div class="mb-4">
@@ -12,11 +12,17 @@
                 <input type="text" name="recipe_title" placeholder="Name" id="recipe_title" required
                        minlength="3" maxlength="64" class="form-field">
             </div>
+
             <div class="mb-4">
                 <label for="recipe_desc" class="form-label">Beschreibung</label>
                 <input type="text" name="recipe_desc" placeholder="Kurzbeschreibung" id="recipe_desc"
                        required minlength="3" maxlength="256" class="form-field">
             </div>
+
+            <div class="mb-4">
+                
+            </div>
+
             <div class="mb-4">
                 <label for="recipe_body" class="form-label">Rezept</label>
                 <textarea type="text" name="recipe_body" placeholder="Rezept" rows="5" id="recipe_body"

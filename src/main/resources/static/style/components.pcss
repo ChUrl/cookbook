@@ -1,3 +1,5 @@
+/* Colored Elements ##############################################################################*/
+
 .btn-indigo {
     @apply bg-indigo-900 text-white border-indigo-900 border-2 rounded px-3 py-2 cursor-pointer inline-block;
     @apply transition-all duration-200 hover:bg-white hover:text-indigo-900 transform-gpu hover:scale-x-105;
@@ -5,6 +7,20 @@
 
 .sep-indigo {
     @apply border-none h-0.5 bg-indigo-900 my-2;
+}
+
+/* Content Elements ##############################################################################*/
+
+.heading-1 {
+    @apply tracking-tight text-2xl mb-4 text-gray-800;
+}
+
+.heading-2 {
+    @apply tracking-tight text-xl font-bold mb-2 text-gray-700;
+}
+
+.heading-3 {
+    @apply tracking-wide font-normal mb-4 text-gray-600;
 }
 
 .cnt-card {
@@ -15,19 +31,19 @@
     @apply cnt-card transform-gpu transition-all duration-200;
 }
 
-.form-field {
-    @apply shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none;
-    @apply transition-all duration-200 focus:border-indigo-900 focus:shadow-lg;
-}
+/* Form Elements #################################################################################*/
 
 .form-label {
     @apply text-sm font-bold block mb-2;
 }
 
-.heading-1 {
-    @apply tracking-tight text-2xl mb-4 text-gray-800;
+.form-field {
+    @apply shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none;
+    @apply transition-all duration-200 focus:border-indigo-900 hover:shadow-lg;
 }
 
-.heading-2 {
-    @apply tracking-wide font-normal mb-4 text-gray-600;
+.form-selector {
+    @apply shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight outline-none;
+    @apply appearance-none cursor-pointer;
+    @apply transition-all duration-200 focus:border-indigo-900 hover:shadow-lg;
 }
