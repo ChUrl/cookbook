@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -58,6 +59,7 @@ public class PersistenceService {
         recipe.setRecipeTitle(title);
         recipe.setRecipeDescr(descr);
         recipe.setRecipeBody(body);
+        recipe.setIngrUsages(new HashSet<>());
 
         for (UUID ingr : ingrs) {
             final Optional<Ingredient> ingropt = this.ingredientRepository.findById(ingr);
