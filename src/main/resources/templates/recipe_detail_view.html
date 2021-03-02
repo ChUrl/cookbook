@@ -3,8 +3,8 @@
       th:replace="fragments/skeleton :: html(title='Rezept Details', bodycontent=~{:: bodycontent})">
 
 <th:block th:fragment="bodycontent">
-    <h1 class="heading-1" th:text="${recipeDTO.getTitle()}"></h1>
-    <p th:text="${recipeDTO.getDescr()}" class="heading-3"></p>
+    <h1 class="heading-1" th:text="${recipe.getTitle()}"></h1>
+    <p th:text="${recipe.getDescr()}" class="heading-3"></p>
 
     <div class="cnt-card">
         <h1 class="heading-2">Zutaten</h1>

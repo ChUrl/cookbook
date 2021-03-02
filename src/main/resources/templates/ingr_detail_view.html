@@ -3,8 +3,8 @@
       th:replace="fragments/skeleton :: html(title='Zutat Details', bodycontent=~{:: bodycontent})">
 
 <th:block th:fragment="bodycontent">
-    <h1 class="heading-1" th:text="${ingrDTO.getTitle()}"></h1>
-    <p th:text="${ingrDTO.getType()}" class="heading-3"></p>
+    <h1 class="heading-1" th:text="${ingr.getTitle()}"></h1>
+    <p th:text="${ingr.getType()}" class="heading-3"></p>
 </th:block>
 
 </html>
