@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/skeleton :: html(title='Neue Zutat', bodycontent=~{:: bodycontent})">
+
+<th:block th:fragment="bodycontent">
+    <h1 class="heading-1">Neue Zutat</h1>
+    <p class="heading-3">Eine neue Zutat für die Verwendung in Rezepten registrieren.</p>
+
+    <div class="cnt-card">
+        <form th:action="@{/ingredients/new/submit}" method="post" th:object="${dto}">
+            <div class="mb-4">
+                <label for="ingr_title" class="form-label">Name</label>
+                <input type="text" name="title" placeholder="Name" id="ingr_title" required
+                       minlength="3" maxlength="64" class="form-field">
+            </div>
+
+            <div class="mb-4">
+                <label for="ingr_type" class="form-label">Kategorie</label>
+                <select class="form-selector" id="ingr_type" name="type" required>
+                    <option th:each="type : ${ingrTypes}" th:value="${type}" th:text="${type}"></option>
+                </select>
+            </div>
+            <input type="submit" class="btn-indigo">
+        </form>
+    </div>
+</th:block>
+
+</html>

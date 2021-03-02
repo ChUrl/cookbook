@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/skeleton :: html(title='Neues Rezept', bodycontent=~{:: bodycontent})">
+
+<th:block th:fragment="bodycontent">
+    <h1 class="heading-1">Neues Rezept</h1>
+    <p class="heading-3">Ein neues Rezept zur Sammlung hinzufügen.</p>
+
+    <div class="cnt-card">
+        <form th:action="@{/new/submit}" method="post" th:object="${dto}">
+            <div class="mb-4">
+                <label for="recipe_title" class="form-label">Name</label>
+                <input type="text" name="title" placeholder="Name" id="recipe_title" required
+                       minlength="3" maxlength="64" class="form-field">
+            </div>
+
+            <div class="mb-4">
+                <label for="recipe_descr" class="form-label">Beschreibung</label>
+                <input type="text" name="descr" placeholder="Kurzbeschreibung" id="recipe_descr"
+                       required minlength="3" maxlength="256" class="form-field">
+            </div>
+
+            <div class="mb-4">
+                <label for="recipe_ingrs" class="form-label">Zutaten</label>
+                <select name="ingrs" id="recipe_ingrs" multiple>
+                    <option th:each="ingrDTO : ${ingrDTOs}" th:value="${ingrDTO.key.toString()}" th:text="${ingrDTO.value.getTitle()}"></option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="recipe_body" class="form-label">Rezept</label>
+                <textarea type="text" name="body" placeholder="Rezept" rows="5" id="recipe_body"
+                          required minlength="3" maxlength="8192" class="form-field resize-auto"></textarea>
+            </div>
+            <input type="submit" class="btn-indigo">
+        </form>
+    </div>
+
+    <!-- Legende -->
+    <div class="cnt-card flex font-mono">
+        <span class="text-xl font-bold mr-6">Formatierung:</span>
+
+        <div class="w-full">
+            <ul class="list-disc list-inside mb-4">
+                <!--Use Comments to remove whitespace that leads to weird spacing-->
+                <li><a class="cursor-pointer" onclick="insertAtCursor('### ', 0)">Überschrift</a></li><!--
+                --><li><a class="cursor-pointer" onclick="insertAtCursor('<hr>\n', 0)">Trennlinie</a></li><!--
+                --><li><a class="cursor-pointer" onclick="insertAtCursor('<br>\n', 0)">Zeilenumbruch</a></li><!--
+                --><li><a class="cursor-pointer" onclick="insertAtCursor('\n\n', 0)">Neuer Paragraph</a></li><!--
+                --><li><a class="cursor-pointer" onclick="insertAtCursor('- ', 0)">Ungeordnete Liste</a></li><!--
+                --><li><a class="cursor-pointer" onclick="insertAtCursor('1. ', 0)">Nummerierte Liste</a></li>
+            </ul>
+        </div>
+
+        <div class="w-full">
+            <ul class="list-disc list-inside">
+                <li><a class="cursor-pointer font-bold" onclick="insertAtCursor('****', -2)">Fett</a></li><!--
+                --><li><a class="cursor-pointer italic" onclick="insertAtCursor('**', -1)">Kursiv</a></li><!--
+                --><li><a class="cursor-pointer bg-yellow-500" onclick="insertAtCursor('<mark><mark/>', -7)">Markiert</a></li><!--
+                --><li><a class="cursor-pointer underline" onclick="insertAtCursor('++++', -2)">Unterstrichen</a></li><!--
+                --><li><a class="cursor-pointer line-through" onclick="insertAtCursor('~~~~', -2)">Durchgestrichen</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!--suppress JSUnresolvedVariable -->
+    <script>
+        // TextArea automatisch vergrößern
+        const tx = document.getElementsByClassName('resize-auto');
+        for (let i = 0; i < tx.length; i++) {
+            tx[i].setAttribute('style', 'height:' + (tx[i].scrollHeight) + 'px;overflow-y:hidden;');
+            tx[i].addEventListener("input", onInput, false);
+        }
+
+        function onInput() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        }
+
+        // Legendeneintrag einsetzen an Cursorstelle
+        function insertAtCursor(value, offset) {
+            const textarea = document.getElementById('recipe_body')
+
+            if (textarea.selectionStart || textarea.selectionStart === '0') {
+                const startPos = textarea.selectionStart;
+                const endPos = textarea.selectionEnd;
+                textarea.value = textarea.value.substring(0, startPos)
+                    + value
+                    + textarea.value.substring(endPos, textarea.value.length);
+
+                textarea.focus()
+                textarea.selectionEnd = textarea.selectionEnd + offset
+            } else {
+                textarea.value += value;
+                textarea.focus()
+            }
+        }
+    </script>
+</th:block>
+
+</html>

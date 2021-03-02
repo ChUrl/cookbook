@@ -15,11 +15,14 @@ build/
 .sts4-cache
 
 ### IntelliJ IDEA ###
-.idea
 *.iws
 *.iml
 *.ipr
-out/
+/out/
+/.idea/sonarlint/
+/.idea/dataSources/
+/.idea/shelf/
+/.idea/workspace.xml
 
 ### NetBeans ###
 /nbproject/private/

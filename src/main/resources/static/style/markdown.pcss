@@ -1,0 +1,29 @@
+.markdown {
+    & h3 {
+        @apply heading-2;
+    }
+
+    & hr {
+        @apply sep-indigo;
+    }
+
+    & ul {
+        @apply list-disc ml-6 mb-2;
+
+        & li {
+            @apply mb-1;
+        }
+    }
+
+    & ol {
+        @apply list-decimal ml-6 mb-2;
+
+        & li {
+            @apply mb-1;
+        }
+    }
+
+    & a {
+        @apply underline text-indigo-700 transition-all duration-200;
+    }
+}

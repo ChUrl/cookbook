@@ -3,9 +3,27 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "watch": {
+    "css:dev": {
+      "patterns": [
+        "./src/main/resources/static"
+      ],
+      "extensions": "pcss",
+      "quiet": false
+    },
+    "css:prod": {
+      "patterns": [
+        "./src/main/resources/static",
+        "./src/main/resources/templates"
+      ],
+      "extensions": "pcss,html",
+      "quiet": false
+    }
+  },
   "scripts": {
-    "dev": "postcss src/main/resources/static/style/tailwind_pre.css -o src/main/resources/static/style/tailwind_dev.css",
-    "prod": "postcss src/main/resources/static/style/tailwind_pre.css -o src/main/resources/static/style/tailwind_prod.css"
+    "css:dev": "NODE_ENV=development postcss ./src/main/resources/static/style/tailwind_pre.pcss -o ./src/main/resources/static/style/tailwind_dev.css",
+    "css:prod": "NODE_ENV=production postcss ./src/main/resources/static/style/tailwind_pre.pcss -o ./src/main/resources/static/style/tailwind_prod.css",
+    "watch": "npm-watch"
   },
   "repository": {
     "type": "git",
@@ -19,10 +37,13 @@
   },
   "homepage": "https://gitlab.com/ChUrl/cookbook#readme",
   "dependencies": {
-    "autoprefixer": "^9.8.0",
-    "postcss-cli": "^7.1.1",
-    "postcss-nested": "^4.2.1",
-    "tailwindcss": "^1.4.6"
+    "autoprefixer": "^10.2.4",
+    "npm-watch": "^0.7.0",
+    "postcss": "^8.2.6",
+    "postcss-cli": "^8.3.1",
+    "postcss-import": "^14.0.0",
+    "postcss-nesting": "^7.0.1",
+    "tailwindcss": "^2.0.3"
   },
   "devDependencies": {
     "cssnano": "^4.1.10"

@@ -1,67 +1,31 @@
-INSERT INTO recipe(title, description, body)
-VALUES ('Gefülltes Fladenbrot', 'Gefülltes Fladenbrot mit Schafskäse, Gurken und Krautsalat',
-        '= Document Title
-Pingu <pingu@pongu.com>
+INSERT INTO recipes (recipe_id, recipe_title, recipe_descr, recipe_body)
+VALUES ('1a9196f4-088c-42e5-9a06-e30f7a8630f9', 'Kartoffelsalat', 'Ein Salat aus Kartoffeln, der Kartoffeln beinhaltet.',
+'### Benötigte Zutaten
+<hr>
 
-== The documents provides:
-=== The documents provides:
+1. Kartoffeln
+2. Mehr Kartoffeln
+3. Salat
+4. Man braucht auch noch 1EL Kartoffeln
 
-Das ist ein normaler Paragraph. Mit mehreren Sätzen.
-Und mehreren Zeilen. SO wie es sein sollte, bla bla bla Lorem Ipsum Dolockuhokuspokus
+### Zubereitung
+<hr>
 
-* List
-** List
-*** List
+- Kartoffeln schälen
+- Die Schale essen
 
-Die Liste sollte hier zuende sein.
+++PlusPlus++<br>
+~~TildeTilde~~<br>
+*Stern*<br>
+**SternStern**<br>
+***SternSternStern***<br>
+<mark>MarkTag</mark><br>
+https://google.de');
 
-. List
-. List
-.. List
-.. List
-.. List
+INSERT INTO ingredients (ingr_id, ingr_title, ingr_type)
+VALUES ('08d710e3-c619-4ccb-9984-b665b2ba88d9', 'Kartoffeln', 4),
+       ('9bdcd68f-3894-45ff-bcbb-474cf11753a2', 'Karotten', 4);
 
-Warum muss man jede Liste mit Text beenden? Aber egal einfach mehr Text einfach mehr Text einfach mehr Text einfach mehr Text,
-einfach mehr Text einfach mehr Text einfach mehr Text einfach mehr Text einfach mehr Text einfach mehr Text einfach mehr Text,
-einfach mehr Text einfach mehr Text einfach mehr Text einfach mehr Text einfach mehr Text einfach mehr Text Hurraaaaaaaa!!!!
-
-Ein AQbsatz
-
-Warum muss man jede Liste mit Text beenden? Aber egal einfach mehr Text einfach mehr Text einfach mehr Text einfach mehr Text,
-einfach mehr Text einfach mehr Text einfach mehr Text einfach mehr Text einfach mehr Text einfach mehr Text einfach mehr Text,
-einfach mehr Text einfach mehr Text einfach mehr Text einfach mehr Text einfach mehr Text einfach mehr Text Hurraaaaaaaa!!!!
-
-* [*] List
-* [ ] List
-
-
-.Das ist ein toller Titel
-|===
-|Name of Column 1 |Name of Column 2 |Name of Column 3
-
-|Cell in column 1, row 1
-|Cell in column 2, row 1
-|Cell in column 3, row 1
-
-|Cell in column 1, row 2
-|Cell in column 2, row 2
-|Cell in column 3, row 2
-|===
-
-* Link: https://asciidoctor.org - automatic!
-* Link: link:++https://example.org/?q=[a b]++[URL with special characters]
-
-* Bold: *Bold*
-* Italic: _Italic_
-* Monospace: `Monospace`
-
-* #Hash Hash#
-* [.underline]#Underline#
-* [.line-through]#Line-Through#
-
-* Super^script^
-* Sub~script~'),
-       ('Pizza', 'Italienische Pizza', '=== Belag
-
-* Tomatensauße
-* Salami');
+INSERT INTO ingredient_usages (ingr_id, recipe_id, amount)
+VALUES ('08d710e3-c619-4ccb-9984-b665b2ba88d9', '1a9196f4-088c-42e5-9a06-e30f7a8630f9', 25),
+       ('9bdcd68f-3894-45ff-bcbb-474cf11753a2', '1a9196f4-088c-42e5-9a06-e30f7a8630f9', 12);
