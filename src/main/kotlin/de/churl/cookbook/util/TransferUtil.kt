@@ -14,8 +14,7 @@ fun recipeToDTO(recipe: Recipe): RecipeDTO {
         recipe.recipeTitle,
         recipe.recipeDescr,
         recipe.recipeBody,
-        recipe.ingrUsages.associateBy({ ingrToDTO(it.ingr) }, { it.amount }).toMap(),
-        recipe.recipeID.toString()
+        recipe.ingrUsages.map { it.ingrUsageKey.ingrID.toString() }.toList()
     )
 }
 
@@ -26,7 +25,6 @@ fun ingrToDTO(ingrs: Collection<Ingredient>): Collection<IngredientDTO> {
 fun ingrToDTO(ingr: Ingredient): IngredientDTO {
     return IngredientDTO(
         ingr.ingrTitle,
-        ingr.ingrType,
-        ingr.ingrID.toString()
+        ingr.ingrType.toString()
     )
 }

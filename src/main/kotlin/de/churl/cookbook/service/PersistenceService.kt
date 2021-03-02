@@ -20,8 +20,10 @@ class PersistenceService(
     val ingrRepository: IngredientRepository,
     val recipeRepository: RecipeRepository
 ) {
-    fun findAllRecipes(): Collection<RecipeDTO> {
-        return recipeToDTO(recipeRepository.findAll())
+    // FIND RECIPES ################################################################################
+
+    fun findAllRecipes(): Map<UUID, RecipeDTO> {
+        return recipeRepository.findAll().associateBy({ it.recipeID }, { recipeToDTO(it) })
     }
 
     fun findRecipeById(id: String): RecipeDTO {
@@ -30,6 +32,17 @@ class PersistenceService(
 
     fun findRecipeById(id: UUID): RecipeDTO {
         return recipeToDTO(recipeRepository.findByIdOrNull(id) ?: throw RecipeNotFoundException(id))
+    }
+
+    // SAVE RECIPES ################################################################################
+
+    fun saveNewRecipe(recipe: RecipeDTO): UUID {
+        return saveNewRecipe(
+            recipe.title,
+            recipe.descr,
+            recipe.body,
+            toUUID(recipe.ingrs)
+        )
     }
 
     fun saveNewRecipe(title: String, descr: String, body: String, ingrs: Collection<UUID>): UUID {
@@ -52,8 +65,14 @@ class PersistenceService(
         return recipeRepository.save(recipe).recipeID
     }
 
-    fun findAllIngredients(): Collection<IngredientDTO> {
-        return ingrToDTO(ingrRepository.findAll())
+    // FIND INGRS ##################################################################################
+
+    fun findAllIngredients(): Map<UUID, IngredientDTO> {
+        return ingrRepository.findAll().associateBy({ it.ingrID }, { ingrToDTO(it) })
+    }
+
+    fun findAllIngredientsById(ids: Collection<String>): Collection<IngredientDTO> {
+        return ingrToDTO(ingrRepository.findAllById(toUUID(ids)))
     }
 
     fun findIngrById(id: String): IngredientDTO {
@@ -62,6 +81,12 @@ class PersistenceService(
 
     fun findIngrById(id: UUID): IngredientDTO {
         return ingrToDTO(ingrRepository.findByIdOrNull(id) ?: throw IngredientNotFoundException(id))
+    }
+
+    // SAVE INGRS ##################################################################################
+
+    fun saveNewIngredient(ingr: IngredientDTO): UUID {
+        return saveNewIngredient(ingr.title, ingr.type)
     }
 
     fun saveNewIngredient(title: String, type: String): UUID {
