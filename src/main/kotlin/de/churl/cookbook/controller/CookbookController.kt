@@ -1,20 +1,16 @@
 package de.churl.cookbook.controller
 
 import de.churl.cookbook.model.IngredientType
+import de.churl.cookbook.model.transfer.IngredientDTO
+import de.churl.cookbook.model.transfer.RecipeDTO
 import de.churl.cookbook.service.PersistenceService
-import de.churl.cookbook.util.toUUID
-import org.commonmark.ext.autolink.AutolinkExtension
-import org.commonmark.ext.gfm.strikethrough.StrikethroughExtension
-import org.commonmark.ext.ins.InsExtension
-import org.commonmark.parser.Parser
-import org.commonmark.renderer.html.HtmlRenderer
+import de.churl.cookbook.util.renderMarkdown
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.ui.set
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestParam
 
 @Controller
 class CookbookController(
@@ -30,23 +26,14 @@ class CookbookController(
     @GetMapping("/new")
     fun newRecipeForm(model: Model): String {
         model["ingrDTOs"] = persistenceService.findAllIngredients()
+        model["dto"] = RecipeDTO("", "", "", emptySet())
 
         return "new_recipe_form"
     }
 
     @PostMapping("/new/submit")
-    fun newRecipeSubmit(
-        @RequestParam("recipe_title") recipeTitle: String,
-        @RequestParam("recipe_descr") recipeDescr: String,
-        @RequestParam("recipe_body") recipeBody: String,
-        @RequestParam("recipe_ingrs") recipeIngrs: Collection<String>
-    ): String {
-        val recipeID = persistenceService.saveNewRecipe(
-            recipeTitle,
-            recipeDescr,
-            recipeBody,
-            toUUID(recipeIngrs)
-        )
+    fun newRecipeSubmit(recipe: RecipeDTO): String {
+        val recipeID = persistenceService.saveNewRecipe(recipe)
 
         return "redirect:/details/$recipeID"
     }
@@ -58,17 +45,9 @@ class CookbookController(
     ): String {
         val recipeDTO = persistenceService.findRecipeById(recipeID)
 
-        val extensions = listOf(
-            AutolinkExtension.create(),
-            StrikethroughExtension.create(),
-            InsExtension.create()
-        )
-        val parser = Parser.builder().extensions(extensions).build()
-        val node = parser.parse(recipeDTO.body)
-        val render = HtmlRenderer.builder().extensions(extensions).build()
-
         model["recipeDTO"] = recipeDTO
-        model["bodyhtml"] = render.render(node)
+        model["ingredients"] = persistenceService.findAllIngredientsById(recipeDTO.ingrs)
+        model["bodyhtml"] = renderMarkdown(recipeDTO.body)
 
         return "recipe_detail_view"
     }
@@ -82,17 +61,15 @@ class CookbookController(
 
     @GetMapping("/ingredients/new")
     fun newIngredientForm(model: Model): String {
-        model["ingrTypes"] = listOf(IngredientType.values())
+        model["ingrTypes"] = IngredientType.values().map { it.toString() }.toList()
+        model["dto"] = IngredientDTO("", "")
 
         return "new_ingr_form"
     }
 
     @PostMapping("/ingredients/new/submit")
-    fun newIngredientSubmit(
-        @RequestParam("ingr_title") title: String,
-        @RequestParam("ingr_type") type: String
-    ): String {
-        val ingrID = persistenceService.saveNewIngredient(title, type)
+    fun newIngredientSubmit(ingr: IngredientDTO): String {
+        val ingrID = persistenceService.saveNewIngredient(ingr)
 
         return "redirect:/ingredients/details/$ingrID"
     }
