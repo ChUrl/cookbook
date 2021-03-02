@@ -1,7 +1,7 @@
 package de.churl.cookbook.service
 
-import de.churl.cookbook.exception.IngredientNotFoundException
-import de.churl.cookbook.exception.RecipeNotFoundException
+import de.churl.cookbook.error.IngredientNotFoundException
+import de.churl.cookbook.error.RecipeNotFoundException
 import de.churl.cookbook.model.*
 import de.churl.cookbook.model.transfer.IngredientDTO
 import de.churl.cookbook.model.transfer.RecipeDTO
@@ -64,7 +64,7 @@ class PersistenceService(
         return ingrToDTO(ingrRepository.findByIdOrNull(id) ?: throw IngredientNotFoundException(id))
     }
 
-    fun saveNewIngredient(title: String, type: String) : UUID {
+    fun saveNewIngredient(title: String, type: String): UUID {
         val ingr = Ingredient(
             UUID.randomUUID(),
             title,
