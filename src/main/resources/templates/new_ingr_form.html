@@ -7,16 +7,16 @@
     <p class="heading-3">Eine neue Zutat für die Verwendung in Rezepten registrieren.</p>
 
     <div class="cnt-card">
-        <form th:action="@{/ingredients/new/submit}" method="post">
+        <form th:action="@{/ingredients/new/submit}" method="post" th:object="${dto}">
             <div class="mb-4">
                 <label for="ingr_title" class="form-label">Name</label>
-                <input type="text" name="ingr_title" placeholder="Name" id="ingr_title" required
+                <input type="text" name="title" placeholder="Name" id="ingr_title" required
                        minlength="3" maxlength="64" class="form-field">
             </div>
 
             <div class="mb-4">
                 <label for="ingr_type" class="form-label">Kategorie</label>
-                <select class="form-selector" id="ingr_type" name="ingr_type" required>
+                <select class="form-selector" id="ingr_type" name="type" required>
                     <option th:each="type : ${ingrTypes}" th:value="${type}" th:text="${type}"></option>
                 </select>
             </div>

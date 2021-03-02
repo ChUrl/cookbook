@@ -7,29 +7,29 @@
     <p class="heading-3">Ein neues Rezept zur Sammlung hinzufügen.</p>
 
     <div class="cnt-card">
-        <form th:action="@{/new/submit}" method="post">
+        <form th:action="@{/new/submit}" method="post" th:object="${dto}">
             <div class="mb-4">
                 <label for="recipe_title" class="form-label">Name</label>
-                <input type="text" name="recipe_title" placeholder="Name" id="recipe_title" required
+                <input type="text" name="title" placeholder="Name" id="recipe_title" required
                        minlength="3" maxlength="64" class="form-field">
             </div>
 
             <div class="mb-4">
                 <label for="recipe_descr" class="form-label">Beschreibung</label>
-                <input type="text" name="recipe_descr" placeholder="Kurzbeschreibung" id="recipe_descr"
+                <input type="text" name="descr" placeholder="Kurzbeschreibung" id="recipe_descr"
                        required minlength="3" maxlength="256" class="form-field">
             </div>
 
             <div class="mb-4">
                 <label for="recipe_ingrs" class="form-label">Zutaten</label>
-                <select name="recipe_ingrs" id="recipe_ingrs" multiple>
-                    <option th:each="ingrDTO : ${ingrDTOs}" th:value="${ingrDTO.getExternal()}" th:text="${ingrDTO.getTitle()}"></option>
+                <select name="ingrs" id="recipe_ingrs" multiple>
+                    <option th:each="ingrDTO : ${ingrDTOs}" th:value="${ingrDTO.key.toString()}" th:text="${ingrDTO.value.getTitle()}"></option>
                 </select>
             </div>
 
             <div class="mb-4">
                 <label for="recipe_body" class="form-label">Rezept</label>
-                <textarea type="text" name="recipe_body" placeholder="Rezept" rows="5" id="recipe_body"
+                <textarea type="text" name="body" placeholder="Rezept" rows="5" id="recipe_body"
                           required minlength="3" maxlength="8192" class="form-field resize-auto"></textarea>
             </div>
             <input type="submit" class="btn-indigo">

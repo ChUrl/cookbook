@@ -6,11 +6,11 @@
     <h1 class="heading-1">Alle Rezepte</h1>
     <a class="btn-indigo mb-4" th:href="@{/new}">Neues Rezept</a>
 
-    <a th:each="recipeDTO : ${recipeDTOs}" th:href="@{/details/{id} (id=${recipeDTO.getExternal()})}">
+    <a th:each="recipeDTO : ${recipeDTOs}" th:href="@{/details/{id} (id=${recipeDTO.key.toString()})}">
         <div class="cnt-card-trans cursor-pointer hover:shadow-xl hover:scale-105">
-            <h1 class="heading-1 mb-2" th:text="${recipeDTO.getTitle()}"></h1>
+            <h1 class="heading-1 mb-2" th:text="${recipeDTO.value.getTitle()}"></h1>
             <hr class="sep-indigo">
-            <p th:text="${recipeDTO.getDescr()}" class="heading-3 mb-0"></p>
+            <p th:text="${recipeDTO.value.getDescr()}" class="heading-3 mb-0"></p>
         </div>
     </a>
 </th:block>

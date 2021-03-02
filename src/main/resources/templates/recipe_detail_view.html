@@ -10,7 +10,7 @@
         <h1 class="heading-2">Zutaten</h1>
         <hr class="sep-indigo">
         <ul class="list-disc list-inside">
-            <li th:each="usage : ${recipeDTO.getIngrs().keySet()}" th:text="${usage.getTitle()}"></li>
+            <li th:each="ingr : ${ingredients}" th:text="${ingr.getTitle()}"></li>
         </ul>
     </div>
 

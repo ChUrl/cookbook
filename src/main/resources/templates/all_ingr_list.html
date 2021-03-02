@@ -6,9 +6,9 @@
     <h1 class="heading-1">Alle Zutaten</h1>
     <a class="btn-indigo mb-4" th:href="@{/ingredients/new}">Neue Zutat</a>
 
-    <a th:each="ingrDTO : ${ingrDTOs}" th:href="@{/ingredients/{id} (id=${ingrDTO.getExternal()})}">
+    <a th:each="ingrDTO : ${ingrDTOs}" th:href="@{/ingredients/{id} (id=${ingrDTO.key.toString()})}">
         <div class="cnt-card-trans cursor-pointer hover:shadow-xl hover:scale-105">
-            <h1 class="heading-1 mb-0" th:text="${ingrDTO.getTitle()}"></h1>
+            <h1 class="heading-1 mb-0" th:text="${ingrDTO.value.getTitle()}"></h1>
         </div>
     </a>
 </th:block>
