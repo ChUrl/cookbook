@@ -17,68 +17,75 @@ class CookbookController(
     val persistenceService: PersistenceService
 ) {
     @GetMapping("*")
-    fun index(model: Model): String {
-        model["recipeDTOs"] = persistenceService.findAllRecipes()
+    fun index(): String {
+        return "redirect:/recipes"
+    }
+
+    @GetMapping("/recipes")
+    fun allRecipes(model: Model): String {
+        model["recipes"] = persistenceService.findAllRecipes()
 
         return "all_recipe_list"
     }
 
-    @GetMapping("/new")
-    fun newRecipeForm(model: Model): String {
-        model["ingrDTOs"] = persistenceService.findAllIngredients()
-        model["dto"] = RecipeDTO("", "", "", emptySet())
-
-        return "new_recipe_form"
-    }
-
-    @PostMapping("/new/submit")
-    fun newRecipeSubmit(recipe: RecipeDTO): String {
-        val recipeID = persistenceService.saveNewRecipe(recipe)
-
-        return "redirect:/details/$recipeID"
-    }
-
-    @GetMapping("/details/{id}")
+    @GetMapping("/recipes/details/{id}")
     fun recipeDetails(
-        @PathVariable("id") recipeID: String,
+        @PathVariable("id") id: String,
         model: Model
     ): String {
-        val recipeDTO = persistenceService.findRecipeById(recipeID)
+        val recipe = persistenceService.findRecipeById(id)
 
-        model["recipeDTO"] = recipeDTO
-        model["ingredients"] = persistenceService.findAllIngredientsById(recipeDTO.ingrs)
-        model["bodyhtml"] = renderMarkdown(recipeDTO.body)
+        model["recipe"] = recipe
+        model["ingredients"] = persistenceService.findAllIngredientsById(recipe.ingrs)
+        model["bodyhtml"] = renderMarkdown(recipe.body)
 
         return "recipe_detail_view"
     }
 
+    @GetMapping("/recipes/new")
+    fun newRecipeForm(model: Model): String {
+        model["ingrDTOs"] = persistenceService.findAllIngredients()
+        model["dto"] = RecipeDTO() // Need this for the @ModelAttribute Form-Submission
+
+        return "new_recipe_form"
+    }
+
+    @PostMapping("/recipes/new/submit")
+    fun newRecipeSubmit(recipe: RecipeDTO): String {
+        val id = persistenceService.saveNewRecipe(recipe)
+
+        return "redirect:/recipes/details/$id"
+    }
+
     @GetMapping("/ingredients")
     fun allIngredients(model: Model): String {
-        model["ingrDTOs"] = persistenceService.findAllIngredients()
+        model["ingrs"] = persistenceService.findAllIngredients()
 
         return "all_ingr_list"
+    }
+
+    @GetMapping("/ingredients/details/{id}")
+    fun ingredientDetails(
+        @PathVariable("id") id: String,
+        model: Model
+    ): String {
+        model["ingr"] = persistenceService.findIngrById(id)
+
+        return "ingr_detail_view"
     }
 
     @GetMapping("/ingredients/new")
     fun newIngredientForm(model: Model): String {
         model["ingrTypes"] = IngredientType.values().map { it.toString() }.toList()
-        model["dto"] = IngredientDTO("", "")
+        model["dto"] = IngredientDTO()
 
         return "new_ingr_form"
     }
 
     @PostMapping("/ingredients/new/submit")
     fun newIngredientSubmit(ingr: IngredientDTO): String {
-        val ingrID = persistenceService.saveNewIngredient(ingr)
+        val id = persistenceService.saveNewIngredient(ingr)
 
-        return "redirect:/ingredients/details/$ingrID"
-    }
-
-    @GetMapping("/ingredients/details/{id}")
-    fun ingredientDetails(
-        @PathVariable("id") ingrID: String,
-        model: Model
-    ): String {
-        return "ingr_detail_view"
+        return "redirect:/ingredients/details/$id"
     }
 }
