@@ -47,11 +47,9 @@ class PersistenceService(
 
     fun saveNewRecipe(title: String, descr: String, body: String, ingrs: Collection<UUID>): UUID {
         val recipe = Recipe(
-            UUID.randomUUID(),
             title,
             descr,
-            body,
-            HashSet()
+            body
         )
 
         for (id: UUID in ingrs) {
@@ -91,10 +89,8 @@ class PersistenceService(
 
     fun saveNewIngredient(title: String, type: String): UUID {
         val ingr = Ingredient(
-            UUID.randomUUID(),
             title,
-            IngredientType.valueOf(type),
-            HashSet()
+            IngredientType.valueOf(type)
         )
 
         return ingrRepository.save(ingr).ingrID
