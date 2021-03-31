@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="PostgreSQL - cookbook@0.0.0.0" uuid="63b04cc6-a86f-4ed4-82e7-ffc38538125d">
+    <data-source name="PostgreSQL - cookbook@localhost" uuid="cc61b34f-9366-4e1e-8bf7-3d85b263e932">
       <database-info product="PostgreSQL" version="13.2" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.2.5" dbms="POSTGRES" exact-version="13.2" exact-driver-version="42.2">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
@@ -11,7 +11,7 @@
       <schema-mapping>
         <introspection-scope>
           <node kind="database" qname="cookbook">
-            <node kind="schema" qname="@" />
+            <node kind="schema" qname="public" />
           </node>
         </introspection-scope>
       </schema-mapping>
