@@ -23,6 +23,7 @@ data class Recipe(
     @OneToMany(mappedBy = "recipe", cascade = [CascadeType.ALL], orphanRemoval = true)
     var ingrUsages: MutableCollection<IngrUsage> = mutableSetOf()
 ) {
+    // Attributes inside the class-body are not used in method derivations (i.e. hashCode)
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(

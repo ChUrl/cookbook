@@ -18,5 +18,5 @@ data class IngrUsage(
     @JoinColumn(name = "ingr_id")
     var ingr: Ingredient,
 
-    var amount: Int
+    var amount: String
 )
