@@ -14,7 +14,7 @@ fun recipeToDTO(recipe: Recipe): RecipeDTO {
         recipe.recipeTitle,
         recipe.recipeDescr,
         recipe.recipeBody,
-        recipe.ingrUsages.map { it.ingrUsageKey.ingrID.toString() }.toList()
+        recipe.ingrUsages.map { it.ingrUsageKey.ingrID.toString() }.toSet()
     )
 }
 

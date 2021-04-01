@@ -9,3 +9,11 @@ fun toUUID(ids: Collection<String>): Collection<UUID> {
 fun toUUID(id: String): UUID {
     return UUID.fromString(id)
 }
+
+fun emptyUUID(): UUID {
+    return UUID.fromString("00000000-0000-0000-0000-000000000000")
+}
+
+fun UUIDisEmpty(id: UUID): Boolean {
+    return id.equals(emptyUUID())
+}
