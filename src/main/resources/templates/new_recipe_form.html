@@ -4,41 +4,65 @@
 
 <th:block th:fragment="bodycontent">
     <h1 class="heading-1">Neues Rezept</h1>
-    <p class="heading-3">Ein neues Rezept zur Sammlung hinzufügen.</p>
+    <p class="heading-3">Ein neues Rezept erstellen und zur Sammlung hinzufügen.</p>
 
     <div class="cnt-card">
-        <form th:action="@{/new/submit}" method="post" th:object="${dto}">
+        <h1 class="heading-2">Zutaten</h1>
+        <hr class="sep-indigo">
+        <table class="w-full">
+            <tr class="flex justify-between items-center" th:each="entry : ${ingrs}">
+                <td th:text="${entry.value}"></td>
+                <td class="font-mono font-light">500 g</td>
+                <td class="float-right">
+                    <form th:action="@{/recipes/new/ingrs/remove/{id} (id=${entry.key.toString()})}" method="post">
+                        <input type="submit" class="btn-red py-1" value="Entfernen">
+                    </form>
+                </td>
+            </tr>
+        </table>
+        <hr class="sep-indigo" th:unless="${dto.ingrs.size == 0}">
+
+        <form th:action="@{/recipes/new/ingrs/add}" method="post">
+            <div class="mb-4">
+                <label for="recipe_ingr" class="form-label">Neue Zutat hinzufügen</label>
+                <select class="form-selector" name="ingr" id="recipe_ingr">
+                    <option hidden selected th:value="DEFAULT">Auswählen</option>
+                    <option th:each="entry : ${ingrDTOs}" th:value="${entry.key.toString()}"
+                            th:text="${entry.value.getTitle()}"></option>
+                </select>
+
+            </div>
+            <input type="submit" class="btn-indigo" value="Hinzufügen">
+        </form>
+    </div>
+
+    <div class="cnt-card">
+        <form th:action="@{/recipes/new/submit}" method="post">
             <div class="mb-4">
                 <label for="recipe_title" class="form-label">Name</label>
                 <input type="text" name="title" placeholder="Name" id="recipe_title" required
-                       minlength="3" maxlength="64" class="form-field">
+                       minlength="3" maxlength="64" class="form-field" th:value="${dto.title}">
             </div>
 
             <div class="mb-4">
                 <label for="recipe_descr" class="form-label">Beschreibung</label>
                 <input type="text" name="descr" placeholder="Kurzbeschreibung" id="recipe_descr"
-                       required minlength="3" maxlength="256" class="form-field">
-            </div>
-
-            <div class="mb-4">
-                <label for="recipe_ingrs" class="form-label">Zutaten</label>
-                <select name="ingrs" id="recipe_ingrs" multiple>
-                    <option th:each="ingrDTO : ${ingrDTOs}" th:value="${ingrDTO.key.toString()}" th:text="${ingrDTO.value.getTitle()}"></option>
-                </select>
+                       required minlength="3" maxlength="256" class="form-field" th:value="${dto.descr}">
             </div>
 
             <div class="mb-4">
                 <label for="recipe_body" class="form-label">Rezept</label>
                 <textarea type="text" name="body" placeholder="Rezept" rows="5" id="recipe_body"
-                          required minlength="3" maxlength="8192" class="form-field resize-auto"></textarea>
+                          required minlength="3" maxlength="8192" class="form-field resize-auto"
+                          th:text="${dto.body}"></textarea>
             </div>
-            <input type="submit" class="btn-indigo">
+            <input type="submit" class="btn-indigo" value="Rezept speichern">
         </form>
     </div>
 
     <!-- Legende -->
     <div class="cnt-card flex font-mono">
-        <span class="text-xl font-bold mr-6">Formatierung:</span>
+        <h1 class="heading-2 mr-6">Formatierung:</h1>
 
         <div class="w-full">
             <ul class="list-disc list-inside mb-4">

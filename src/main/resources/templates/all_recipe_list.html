@@ -4,7 +4,7 @@
 
 <th:block th:fragment="bodycontent">
     <h1 class="heading-1">Alle Rezepte</h1>
-    <a class="btn-indigo mb-4" th:href="@{/recipes/new}">Neues Rezept</a>
+    <a class="btn-indigo mb-4" th:href="@{/recipes/new/new}">Neues Rezept</a>
 
     <a th:each="recipe : ${recipes}" th:href="@{/recipes/details/{id} (id=${recipe.key.toString()})}">
         <div class="cnt-card-trans cursor-pointer hover:shadow-xl hover:scale-105">
