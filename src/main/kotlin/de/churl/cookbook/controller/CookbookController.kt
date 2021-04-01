@@ -8,13 +8,11 @@ import de.churl.cookbook.util.renderMarkdown
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.ui.set
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.*
 
 @Controller
 class CookbookController(
-    val persistenceService: PersistenceService
+    private val persistenceService: PersistenceService
 ) {
     @GetMapping("*")
     fun index(): String {
@@ -40,21 +38,6 @@ class CookbookController(
         model["bodyhtml"] = renderMarkdown(recipe.body)
 
         return "recipe_detail_view"
-    }
-
-    @GetMapping("/recipes/new")
-    fun newRecipeForm(model: Model): String {
-        model["ingrDTOs"] = persistenceService.findAllIngredients()
-        model["dto"] = RecipeDTO() // Need this for the @ModelAttribute Form-Submission
-
-        return "new_recipe_form"
-    }
-
-    @PostMapping("/recipes/new/submit")
-    fun newRecipeSubmit(recipe: RecipeDTO): String {
-        val id = persistenceService.saveNewRecipe(recipe)
-
-        return "redirect:/recipes/details/$id"
     }
 
     @GetMapping("/ingredients")
