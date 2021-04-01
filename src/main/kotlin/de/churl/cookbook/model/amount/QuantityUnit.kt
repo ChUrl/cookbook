@@ -1,6 +1,6 @@
 package de.churl.cookbook.model.amount
 
-import de.churl.cookbook.error.UnknownUnitException
+import de.churl.cookbook.error.UnknownUnitError
 
 data class QuantityUnit(
     val nameSingular: String,
@@ -18,7 +18,7 @@ data class QuantityUnit(
                 "Pr" -> unitPraise()
                 "T" -> unitCup()
                 "Ms" -> unitKnife()
-                else -> throw UnknownUnitException(string)
+                else -> throw UnknownUnitError(string)
             }
         }
 
