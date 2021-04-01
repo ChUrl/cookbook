@@ -1,7 +1,7 @@
 package de.churl.cookbook.service
 
-import de.churl.cookbook.error.IngredientNotFoundException
-import de.churl.cookbook.error.RecipeNotFoundException
+import de.churl.cookbook.error.IngredientNotFoundError
+import de.churl.cookbook.error.RecipeNotFoundError
 import de.churl.cookbook.model.*
 import de.churl.cookbook.model.transfer.IngredientDTO
 import de.churl.cookbook.model.transfer.RecipeDTO
@@ -13,7 +13,6 @@ import de.churl.cookbook.util.toUUID
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import java.util.*
-import kotlin.collections.HashSet
 
 @Service
 class PersistenceService(
@@ -31,21 +30,32 @@ class PersistenceService(
     }
 
     fun findRecipeById(id: UUID): RecipeDTO {
-        return recipeToDTO(recipeRepository.findByIdOrNull(id) ?: throw RecipeNotFoundException(id))
+        return recipeToDTO(recipeRepository.findByIdOrNull(id) ?: throw RecipeNotFoundError(id))
     }
 
     // SAVE RECIPES ################################################################################
 
     fun saveNewRecipe(recipe: RecipeDTO): UUID {
-        return saveNewRecipe(
+        return saveRecipe(
             recipe.title,
             recipe.descr,
             recipe.body,
-            toUUID(recipe.ingrs)
+            toUUID(recipe.ingrs),
+            null
         )
     }
 
-    fun saveNewRecipe(title: String, descr: String, body: String, ingrs: Collection<UUID>): UUID {
+    fun saveRecipe(recipe: RecipeDTO, id: UUID): UUID {
+        return saveRecipe(
+            recipe.title,
+            recipe.descr,
+            recipe.body,
+            toUUID(recipe.ingrs),
+            id
+        )
+    }
+
+    fun saveRecipe(title: String, descr: String, body: String, ingrs: Collection<UUID>, id: UUID?): UUID {
         val recipe = Recipe(
             title,
             descr,
@@ -53,12 +63,14 @@ class PersistenceService(
         )
 
         for (id: UUID in ingrs) {
-            val ingr = ingrRepository.findByIdOrNull(id) ?: throw IngredientNotFoundException(id)
+            val ingr = ingrRepository.findByIdOrNull(id) ?: throw IngredientNotFoundError(id)
             val ingrUsageKey = IngrUsageKey(recipe.recipeID, ingr.ingrID)
-            val ingrUsage = IngrUsage(ingrUsageKey, recipe, ingr, 1)
+            val ingrUsage = IngrUsage(ingrUsageKey, recipe, ingr, "1")
 
             recipe.ingrUsages.add(ingrUsage)
         }
+
+        if (id != null) recipe.recipeID = id
 
         return recipeRepository.save(recipe).recipeID
     }
@@ -78,7 +90,7 @@ class PersistenceService(
     }
 
     fun findIngrById(id: UUID): IngredientDTO {
-        return ingrToDTO(ingrRepository.findByIdOrNull(id) ?: throw IngredientNotFoundException(id))
+        return ingrToDTO(ingrRepository.findByIdOrNull(id) ?: throw IngredientNotFoundError(id))
     }
 
     // SAVE INGRS ##################################################################################
