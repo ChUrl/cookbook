@@ -1,11 +1,45 @@
 <!DOCTYPE html>
 <html lang="de" xmlns:th="http://www.thymeleaf.org"
-      th:replace="fragments/skeleton :: html(
-      title='Fehler',
-      bodycontent=~{:: bodycontent})">
+      th:replace="fragments/skeleton :: html(title='Fehler', bodycontent=~{:: bodycontent})">
 
 <th:block th:fragment="bodycontent">
-    <h1>Ein Fehler ist aufgetreten</h1>
+    <h1 class="heading-1">Error :(</h1>
+    <p class="heading-3">Ein Fehler ist aufgetreten.</p>
+
+    <div class="cnt-card">
+        <table>
+            <tr>
+                <td>Date</td>
+                <td th:text="${timestamp}"/>
+            </tr>
+            <tr>
+                <td>Path</td>
+                <td th:text="${path}"/>
+            </tr>
+            <tr>
+                <td>Error</td>
+                <td th:text="${error}"/>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td th:text="${status}"/>
+            </tr>
+            <tr>
+                <td>Message</td>
+                <td th:text="${message}"/>
+            </tr>
+            <tr>
+                <td>Exception</td>
+                <td th:text="${exception}"/>
+            </tr>
+            <tr>
+                <td>Trace</td>
+                <td>
+                    <pre th:text="${trace}"/>
+                </td>
+            </tr>
+        </table>
+    </div>
 </th:block>
 
 </html>
