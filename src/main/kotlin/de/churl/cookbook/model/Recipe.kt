@@ -1,5 +1,6 @@
 package de.churl.cookbook.model
 
+import de.churl.cookbook.util.emptyUUID
 import org.hibernate.annotations.GenericGenerator
 import java.util.*
 import javax.persistence.*
@@ -31,5 +32,5 @@ data class Recipe(
         strategy = "org.hibernate.id.UUIDGenerator",
     )
     @Column(name = "recipe_id")
-    var recipeID: UUID = UUID.fromString("00000000-0000-0000-0000-000000000000")
+    var recipeID: UUID = emptyUUID()
 }
