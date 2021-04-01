@@ -1,11 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.4.3"
+    id("org.springframework.boot") version "2.4.4"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
-    kotlin("jvm") version "1.4.31"
-    kotlin("plugin.spring") version "1.4.31"
-    kotlin("plugin.jpa") version "1.4.31"
+    kotlin("jvm") version "1.4.32"
+    kotlin("plugin.spring") version "1.4.32"
+    kotlin("plugin.jpa") version "1.4.32"
 }
 
 group = "de.churl"
@@ -33,8 +33,8 @@ dependencies {
     implementation("org.commonmark:commonmark-ext-gfm-strikethrough:0.17.1")
     implementation("org.commonmark:commonmark-ext-ins:0.17.1")
 
-    compileOnly("org.projectlombok:lombok:1.18.18")
-    annotationProcessor("org.projectlombok:lombok:1.18.18")
+//    compileOnly("org.projectlombok:lombok:1.18.18")
+//    annotationProcessor("org.projectlombok:lombok:1.18.18")
 
     runtimeOnly("org.postgresql:postgresql")
 
